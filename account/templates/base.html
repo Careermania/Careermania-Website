@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Merchant Dashboard {% load static %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'>
+  <script src='{% static "js/base.js" %}'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+
+</head>
+<body>	 
+  <div class="navbar1 sticky-top" style="background-color:#FCBB27;">
+    <a style="color:white;text-decoration:none;margin:5px;border-right-style:solid;border-width:1px;border-color:white;"" href="merchant"> Home</a>
+    <a style="color:white;text-decoration:none;margin:5px;border-right-style:solid;border-width:1px;border-color:white;"" href="logout"> Logout</a>
+    <a class=""  href="#"><i class="fa fa-facebook fa-fw"  style="color:white;margin-left:8x;padding:6px;border-right-style:solid;border-width:1px;border-color:white;"></i> </a>
+    <a  href="#"><i class="fa fa-twitter fa-fw" style="color:white;margin-left:8px;padding:6px;border-right-style:solid;border-width:1px;border-color:white;"></i> </a>
+    <a href="#"><i class="fa fa-google" style="color:white;margin-left:8px;padding:6px;border-right-style:solid;border-width:1px;border-color:white;"></i></a>
+    
+  </div>
+<nav class="navbar navbar-expand-lg  sticky-top" style="background-color:green;">
+  <a class="navbar-brand" href="#"><img src='{% static "images/logo.png" %}' width="300px" height="50px"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse tabs" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+
+      {% if user %}
+   
+    <li  class="nav-item dropdown">
+      <a style="color:white;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Profile
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a  class="dropdown-item" href="#">{{user.username}}</a>
+        <a  class="dropdown-item" href="update_page">Settings</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <button style="float:right;background-color:#0099DC;"class="btn">Request a call</button>  
+    </li>
+      {% else %}
+      <li class="nav-item active" >
+        <a class="nav-link" href="#" >Email <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Phone no.
+		</a>
+      </li>
+       
+      <li class="nav-item">
+        <a class="nav-link " href="#">Create Account</a>
+      </li>
+    <button class="btn">Request a call</button>
+    <li class="nav-item">
+      <a class="nav-link" class="btn" href="#">Login
+  </a>
+    </li>
+    </ul>
+    {% endif %}
+  </div>
+</nav>
+{% block content %} {% endblock %}

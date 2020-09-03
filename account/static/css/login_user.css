@@ -1,0 +1,90 @@
+
+.main{
+	background-color:#3FA60F;
+}
+.back{
+	background-color:white;	
+}
+
+.slide{
+	margin-right:-10px;
+}
+.fb {
+  background-color: #3B5998;
+  color: white;
+}
+
+.twitter {
+  background-color: #55ACEE;
+  color: white;
+}
+
+.google {
+  background-color: #dd4b39;
+  color: white;
+}
+.btn1 {
+  width: 50px;
+  padding: 12px;
+  border: none;
+  border-radius: 50%;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 15px;
+  text-decoration: none; /* remove underline from anchors */
+}
+.form{
+	margin-left:50px;
+	margin-right:50px;
+}
+.btn{
+	width:200px;
+	border :none;
+	font-size:18px;
+	color:white;
+	background-color:#3FA60F;
+	border-radius:8px;
+	
+}
+
+.label{
+	font-size:17px;
+	color:black;
+}
+.text-line {
+    background-color: transparent;
+    color:black;
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #eeeeee 1px;
+    padding: 3px 10px;
+	width:100%;
+	height:50px;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+  opacity: 0.5; /* Firefox */
+}
+
+
+
+button {
+  background-color: #3FA60F;
+  color: white;
+  font-size:24px;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 250px;
+  border-radius:8px; 
+  
+}
+
+button:hover {
+  opacity: 0.8;
+}
