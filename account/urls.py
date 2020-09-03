@@ -35,4 +35,5 @@ urlpatterns = [
     path('update_course/<str:id>', views.update_course, name='update_course'),
     path('update_batch/<str:id>', views.update_batch, name='update_batch'),
     path('update_faculty/<str:id>', views.update_faculty, name='update_faculty'),
+    path('update_geolocation<str:id>', views.update_geolocation, name='update_geolocation'),
 ]

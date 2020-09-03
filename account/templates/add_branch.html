@@ -11,13 +11,13 @@
           <form action="add_branch" method="post">{% csrf_token %}
           <div style="width: 350px;padding-top: 10px;margin: auto">
               <label for="input1" class="form-label">Name Of Branch</label>
-              <input type="text" class="form-control" id="input1" placeholder="Name" name="name">
+              <input type="text" class="form-control" id="input1" placeholder="Name" name="name" required>
             </div>
             <div style="width: 350px;padding-top: 10px;margin: auto">
                 <label>Branch Type</label><br>
-              <input type="radio" id="main" name="branch_type" value="Main">
+              <input type="radio" id="main" name="branch_type" value="Main" required>
                 <label for="main" class="form-label">Main Branch</label><br>
-              <input type="radio" id="sub" name="branch_type" value="Sub">
+              <input type="radio" id="sub" name="branch_type" value="Sub" required>
                 <label for="sub" class="form-label">Sub Branch</label>
             </div>
           <div style="width: 350px;padding-top: 20px;margin: auto;">

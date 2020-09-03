@@ -12,7 +12,7 @@
         </div>
           
           
-          <form action="add_course" method="post">{% csrf_token  %}
+          <form action="add_course" method="post" enctype="multipart/form-data">{% csrf_token  %}
             
               <div class="row" style="padding-top: 10px;">
               <div class="col-lg-3"></div>
@@ -44,11 +44,11 @@
                 <div class="col-lg-3"></div>
                 <div class="col-lg-3" style="padding: 10px">
               <label for="input2" class="form-label">Name</label>
-              <input type="text" class="form-control" id="input2" placeholder="Name" name="name">
+              <input type="text" class="form-control" id="input2" placeholder="Name" name="name" required>
                 </div>
                 <div class="col-lg-3" style="padding: 10px">
               <label for="input3" class="form-label">Description</label>
-              <input type="text" class="form-control" id="input3" placeholder="Description" name="description">
+              <input type="text" class="form-control" id="input3" placeholder="Description" name="description" required>
                 </div>
                 <div class="col-lg-3"></div>
             </div>
@@ -57,11 +57,11 @@
                 <div class="col-lg-3"></div>
                 <div class="col-lg-3" style="padding: 10px">
               <label for="input2" class="form-label">Start Date</label>
-              <input type="date" class="form-control" id="input2" name="start">
+              <input type="date" class="form-control" id="input2" name="start" required>
                 </div>
                 <div class="col-lg-3" style="padding: 10px">
               <label for="input3" class="form-label">End Date</label>
-              <input type="date" class="form-control" id="input3" name="end">
+              <input type="date" class="form-control" id="input3" name="end" required>
                 </div>
                 <div class="col-lg-3"></div>
             </div>
@@ -70,11 +70,11 @@
                 <div class="col-lg-3"></div>
                 <div class="col-lg-3" style="padding: 10px">
                   <label for="input2" class="form-label">Currency</label>
-                  <input type="text" class="form-control" id="input2" placeholder="Currency" name="currency">
+                  <input type="text" class="form-control" id="input2" placeholder="Currency" name="currency" required>
                     </div>
                 <div class="col-lg-3" style="padding: 10px">
               <label for="input3" class="form-label">Fees</label>
-              <input type="text" class="form-control" id="input3" placeholder="Fees" name="fees">
+              <input type="text" class="form-control" id="input3" placeholder="Fees" name="fees" required>
                 </div>
                 <div class="col-lg-3"></div>
             </div>
@@ -83,13 +83,13 @@
                 <div class="col-lg-3"></div>
                 <div class="col-lg-3" style="padding: 10px">
                   <label for="input2" class="form-label">Syllabus</label>
-                  <input type="file" id="input2" placeholder="Syllabus" name="syllabus">
+                  <input type="file" id="input2" placeholder="Syllabus" name="syllabus" required>
                     </div>
                 <div class="col-lg-3" style="padding: 10px">
               <label for="input3" class="form-label">Active</label><br>
-              <input type="radio" id="on" name="active">
+              <input type="radio" id="on" value="on" name="active" required>
                     <label for="on">On</label>
-               <input type="radio" id="off" name="active">
+               <input type="radio" id="off" value="off" name="active" required>
                     <label for="off">Off</label>
                 </div>
                 <div class="col-lg-3"></div>

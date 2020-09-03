@@ -95,10 +95,13 @@ a{
 #div6 { 
   display:none;
 }
+#div7 { 
+  display:none;
+}
 .btn_1{
     background-color:#FCBB27;
 	color:white;
-	width:500px;
+	width:100%;
 	height:50px;
 	margin:20px;
 }

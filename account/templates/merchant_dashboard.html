@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+
+
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner"style="height:500px;">
     <div class="carousel-item active">
@@ -109,6 +111,9 @@ the cake for your “brand”. </li>
                 {% if info %}
                 <div class="container step" style=""><center>2</center></div>
                 <center style="font-size: 20px">Add Additional Information<br><span style="color: green;">Completed</span></center>
+                {% elif not coaching %}
+                <div class="container step" style=""><center>2</center></div>
+                <center style="font-size: 20px">Add Additional Information<br><span style="color: red;">Locked</span></center>
                 {% else %}
                 <a href="add_coaching_metadata"><div class="container step" style=""><center>2</center></div></a>
                 <center style="font-size: 20px">Add Additional Information</center>
@@ -119,6 +124,9 @@ the cake for your “brand”. </li>
                 {% if branch %}
             <div class="container step" style=""><center>3</center></div>
             <center style="font-size: 20px">Add Branch<br><span style="color: green;">Completed</span></center>
+            {% elif not info %}
+                <div class="container step" style=""><center>3</center></div>
+                <center style="font-size: 20px">Add Branch<br><span style="color: red;">Locked</span></center>
             {% else %}
               <a href="add_branch"><div class="container step" style=""><center>3</center></div></a>
                   <center style="font-size: 20px">Add Branch</center>
@@ -129,6 +137,9 @@ the cake for your “brand”. </li>
                 {% if address %}
             <div class="container step" style=""><center>4</center></div>
             <center style="font-size: 20px">Add Address<br><span style="color: green;">Completed</span></center>
+            {% elif not branch %}
+                <div class="container step" style=""><center>4</center></div>
+                <center style="font-size: 20px">Add Address<br><span style="color: red;">Locked</span></center>
             {% else %}
               <a href="add_address"><div class="container step" style=""><center>4</center></div></a>
                   <center style="font-size: 20px">Add Address</center>
@@ -139,6 +150,9 @@ the cake for your “brand”. </li>
                 {% if course %}
             <div class="container step" style=""><center>5</center></div>
             <center style="font-size: 20px">Add Course<br><span style="color: green;">Completed</span></center>
+            {% elif not address %}
+                <div class="container step" style=""><center>5</center></div>
+                <center style="font-size: 20px">Add Course<br><span style="color: red;">Locked</span></center>
             {% else %}
               <a href="add_course"><div class="container step" style=""><center>5</center></div></a>
                   <center style="font-size: 20px">Add Course</center>
@@ -149,6 +163,9 @@ the cake for your “brand”. </li>
                 {% if faculty %}
             <div class="container step" style=""><center>6</center></div>
             <center style="font-size: 20px">Add Faculty<br><span style="color: green;">Completed</span></center>
+            {% elif not course %}
+                <div class="container step" style=""><center>6</center></div>
+                <center style="font-size: 20px">Add Faculty<br><span style="color: red;">Locked</span></center>
             {% else %}
               <a href="add_faculty"><div class="container step" style=""><center>6</center></div></a>
                   <center style="font-size: 20px">Add Faculty</center>
@@ -159,6 +176,9 @@ the cake for your “brand”. </li>
                 {% if batch %}
             <div class="container step" style=""><center>7</center></div>
             <center style="font-size: 20px">Add Batch<br><span style="color: green;">Completed</span></center>
+            {% elif not faculty %}
+                <div class="container step" style=""><center>7</center></div>
+                <center style="font-size: 20px">Add Batch<br><span style="color: red;">Locked</span></center>
             {% else %}
                 <a href="add_batch"><div class="container step" style=""><center>7</center></div></a>
                     <center style="font-size: 20px">Add Batch</center>
@@ -169,6 +189,9 @@ the cake for your “brand”. </li>
                   {% if geolocation %}
               <div class="container step" style=""><center>8</center></div>
               <center style="font-size: 20px">Add Geolocation <br><span style="color: green;">Completed</span></center>
+              {% elif not batch %}
+                <div class="container step" style=""><center>8</center></div>
+                <center style="font-size: 20px">Add Geolocation<br><span style="color: red;">Locked</span></center>
               {% else %}
                   <a href="add_geolocation"><div class="container step" style=""><center>8</center></div></a>
                       <center style="font-size: 20px">Add Geolocation</center>

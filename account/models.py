@@ -147,6 +147,9 @@ class Geolocation(models.Model):
     lat = models.DecimalField(decimal_places=2,max_digits=10,null=False,default=None)
     lng = models.DecimalField(decimal_places=2,max_digits=10,null=False,default=None)
 
+    def __str__(self):
+        return str(self.address)
+
 class Course(models.Model):
 
     Stream_CHOICES = (
@@ -163,7 +166,7 @@ class Course(models.Model):
     description = models.TextField(blank=True,null=True)
     start_date = models.DateField(editable=True)
     end_date   = models.DateField(editable=True)
-    syllabus   = models.FileField(upload_to='syllabus/',blank=True , null=True)
+    syllabus   = models.FileField(blank=True , null=True)
     fees       = models.DecimalField(blank=False,null=False,max_digits=10,decimal_places=2,default=None)
     currency   = models.CharField(max_length=30,blank=True,null=False,default="INR")
     is_active = models.BooleanField(default=False)

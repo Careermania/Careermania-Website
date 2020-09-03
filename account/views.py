@@ -238,6 +238,8 @@ def add_course(request):
             branch = Branch.objects.get(name=branch_taken)
             course = Course(name=name, description=description, branch=branch, start_date=start, end_date=end, 
             stream=stream, fees=fees, currency=currency)
+            myfile = request.FILES["syllabus"]
+            course.syllabus = myfile
             if active == "off":
                 course.is_active = False
             elif active == "on":
@@ -352,7 +354,7 @@ def update_page(request):
         try:
             geolocations = []
             for address in all_address:
-                geolocations += list(Geolocation.objects.get(address=address))
+                geolocations += list(Geolocation.objects.filter(address=address))
         except:
             geolocations = []
         context = {'merchant': request.user, 'coaching': coaching, 'branches': branches, 
@@ -494,17 +496,18 @@ def update_course(request, id):
             end = request.POST['end']
             fees = float(request.POST['fees'])
             currency = request.POST['currency']
-            active = str(request.POST['active'])
+            active = request.POST['active']
+            print(active)
             branch = Branch.objects.get(name=branch_taken)
             course = Course.objects.filter(id=id).update(branch=branch, stream=stream, name=name, description=description, start_date=start, end_date=end,
             fees=fees, currency=currency)
             try:
-                syllabus = request.FILES['syllabus']
-            except Exception as e:
-                syllabus = None   
+                myfile = request.FILES["myfile"]
+            except:
+                myfile = None
             course = Course.objects.get(id=id)
-            if syllabus:
-                course.syllabus = syllabus
+            if myfile:
+                course.syllabus = myfile
             if active == "off":
                 course.is_active = False
             elif active == "on":
@@ -558,5 +561,22 @@ def update_faculty(request, id):
             if faculty_image:
                 faculty.faculty_image = faculty_image
             faculty.save()
+            return redirect('update_page')
+    return render(request, 'signup.html')
+
+@login_required(login_url='index')
+def update_geolocation(request, id):
+    if request.user.is_merchant:
+        if request.method == "POST":
+            merchant = request.user
+            geolocation = Geolocation.objects.get(id=id)
+            address_id = request.POST['address']
+            address = Address.objects.get(id=address_id)
+            latitude = request.POST['latitude']
+            longitude = request.POST['longitude']
+            geolocation.address = address
+            geolocation.lat = latitude
+            geolocation.lng = longitude
+            geolocation.save()
             return redirect('update_page')
     return render(request, 'signup.html')

@@ -9,5 +9,6 @@ admin.site.register(Address)
 admin.site.register(Course)
 admin.site.register(Batch)
 admin.site.register(CoachingFacultyMember)
+admin.site.register(Geolocation)
 
 

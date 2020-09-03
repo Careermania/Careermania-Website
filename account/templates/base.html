@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Merchant Dashboard {% load static %}</title>
+  <title>Merchant Dashboard</title>{% load static %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
@@ -22,7 +22,7 @@
     
   </div>
 <nav class="navbar navbar-expand-lg  sticky-top" style="background-color:green;">
-  <a class="navbar-brand" href="#"><img src='{% static "images/logo.png" %}' width="300px" height="50px"></a>
+  <a class="navbar-brand" href="/"><img src='{% static "images/logo.png" %}' width="100px" height="60px"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -31,18 +31,18 @@
 
       {% if user %}
    
-    <li  class="nav-item dropdown">
-      <a style="color:white;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <li class="nav-item">
+      <div class="dropdown">
+      <a style="color:white;" class="dropdown-toggle" id="navbarDropdownMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Profile
       </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a  class="dropdown-item" href="#">{{user.username}}</a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
+        <a  class="dropdown-item" href="merchant">{{user.username}}</a>
         <a  class="dropdown-item" href="update_page">Settings</a>
       </div>
+      </div>
     </li>
-    <li class="nav-item">
-      <button style="float:right;background-color:#0099DC;"class="btn">Request a call</button>  
-    </li>
+   
       {% else %}
       <li class="nav-item active" >
         <a class="nav-link" href="#" >Email <span class="sr-only">(current)</span></a>
@@ -53,15 +53,17 @@
       </li>
        
       <li class="nav-item">
-        <a class="nav-link " href="#">Create Account</a>
+        <a class="nav-link" href="register">Create Account</a>
       </li>
-    <button class="btn">Request a call</button>
     <li class="nav-item">
-      <a class="nav-link" class="btn" href="#">Login
+      <a class="nav-link" class="btn" href="login">Login
   </a>
     </li>
-    </ul>
     {% endif %}
+    <li class="nav-item">
+      <button style="float:right;background-color:#0099DC;"class="btn">Request a call</button>  
+    </li>
+    </ul>
   </div>
 </nav>
 {% block content %} {% endblock %}

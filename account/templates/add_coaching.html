@@ -10,15 +10,15 @@
           <form action="add_coaching" enctype="multipart/form-data" method="post">{% csrf_token %}
           <div style="width: 350px;padding-top: 10px;margin: auto">
               <label for="input1" class="form-label">Name Of Coaching</label>
-              <input type="text" class="form-control" id="input1" placeholder="Name" name="name" value="">
+              <input type="text" class="form-control" id="input1" placeholder="Name" name="name" value="" required>
             </div>
             <div style="width: 350px;padding-top: 10px;margin: auto">
               <label for="input2" class="form-label">Description</label>
-              <textarea class="form-control" id="input2" rows="3" name="description"></textarea>
+              <textarea class="form-control" id="input2" rows="3" name="description" required></textarea>
             </div>
           <div style="width: 350px;padding-top: 10px;margin: auto">
               <label for="input3" class="form-label">Logo</label>
-              <input type="file" id="input3" name="image">
+              <input type="file" id="input3" name="image" required>
             </div>
           <div style="width: 350px;padding-top: 20px;margin: auto;">
               <button class="btn btn-success" style="margin: auto" type="submit">Add</button> 

@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+
+
 <div class="container">
-  <div class="row">
-  <div class="col-lg-12">
   <center style="padding:10px"><h4>Update Information</h4></center>
   </div>
-  </div>
-  <br><br>
-  <div class="row">
+
+  
+<div class="row">
   <div class="col-lg-3"></div>
   <div class="col-lg-6">
   <center><button class="btn_1" onclick="myFunction()">Coaching</button></center>
@@ -36,15 +36,15 @@
           
         </div>
       </form>
-      
-      
-  </section>
+      </section>
       </div>
       </div>
       <br><br>
       <div class="col-lg-3"></div>
-      </div>
-      <div class="row">
+</div>
+
+
+<div class="row">
       <div class="col-lg-3"></div>
          <div class="col-lg-6">
     <center>  <button  class="btn_1" onclick="myFunction1()">Additional Information</button></center>
@@ -122,12 +122,18 @@
           <input type="text" class="form-control" id="input1" placeholder="Name" name="name3" value="{{branch.name}}">
         </div>
         <div style="width: 350px;padding-top: 10px;margin: auto">
-          <label>Branch Type: {{branch.branch_type}}</label><br>
             <label>Choose Branch Type</label><br>
-          <input type="radio" id="main" name="branch_type" value="Main">
+            {% if branch.branch_type == 'Main' %}
+          <input type="radio" id="main" name="branch_type" value="Main" checked>
             <label for="main" class="form-label">Main Branch</label><br>
           <input type="radio" id="sub" name="branch_type" value="Sub">
             <label for="sub" class="form-label">Sub Branch</label>
+            {% else %}
+            <input type="radio" id="main" name="branch_type" value="Main">
+            <label for="main" class="form-label">Main Branch</label><br>
+          <input type="radio" id="sub" name="branch_type" value="Sub" checked>
+            <label for="sub" class="form-label">Sub Branch</label>
+            {% endif %}
         </div>
       <div style="width: 350px;padding-top: 20px;margin: auto;">
           <button class="btn btn-success" style="margin: auto" type="submit">Update</button> 
@@ -243,7 +249,7 @@
   {% for course in courses %}
   <section class="container" style="padding:50px;margin-top: 60px; background-color: white;">
     <center style="padding:10px"><h4>{{course.name}}</h4></center>
-      <form action="{% url 'update_course' id=course.id %}" method="post">{% csrf_token  %}
+      <form action="{% url 'update_course' id=course.id %}" method="post" enctype="multipart/form-data">{% csrf_token  %}
         
           <div class="row" style="padding-top: 10px;">
       <div class="col-lg-6">
@@ -328,23 +334,24 @@
           
           <div class="row" style="padding-top: 10px;">
             <div class="col-lg-6" style="padding: 10px">
-              <label for="input2" class="form-label">Syllabus : <a href="http://127.0.0.1:8000{{course.syllabus}}" style="color:blue">View</a></label>
-              <input type="file" id="input2" placeholder="Syllabus" name="syllabus">
+              <label for="input2" class="form-label">Profile Picture : <a href="http://127.0.0.1:8000{{course.syllabus.url}}" style="color:blue">View</a></label>
+              <input type="file" id="input2" name="myfile">
                 </div>
             <div class="col-lg-6" style="padding: 10px">
           <label for="input3" class="form-label">Active</label><br>
-          {% if course.is_active %}
-          <input type="radio" id="on" name="active" checked>
+                {% if course.is_active %}
+                <input type="radio" id="on" value="on" name="active" checked>
                 <label for="on">On</label>
-                <input type="radio" id="off" name="active">
+                <input type="radio" id="off" value="off" name="active">
                 <label for="off">Off</label>
-              {% else %}
-              <input type="radio" id="on" name="active">
+                {% else %}
+                <input type="radio" id="on" value="on" name="active">
                 <label for="on">On</label>
-                <input type="radio" id="off" name="active" checked>
+                <input type="radio" id="off" value="off" name="active" checked>
                 <label for="off">Off</label>
-            </div>
                 {% endif %}
+            </div>
+                
 
            
         </div>
@@ -400,7 +407,9 @@
         
         <div class="row" style="padding-top: 10px;">
           <div class="col-lg-6" style="padding: 10px">
-        <label for="input2" class="form-label">Profile Picture : <a href="http://127.0.0.1:8000{{faculty.faculty_image.url}}" style="color:blue">View</a></label>
+        <label for="input2" class="form-label">Profile Picture<br>
+           <img src="http://127.0.0.1:8000{{faculty.faculty_image.url}}" class="img-fluid" style="margin: 10px;">
+          </label>
         <input type="file" id="input2" name="pic">
           </div>
       </div>
@@ -492,33 +501,97 @@
           </div>
           <div class="col-lg-6" style="padding: 10px">
         <label for="input3" class="form-label">Active</label><br>
-        {% if batch.is_active %}
-          <input type="radio" id="on" name="active1" checked>
+                {% if batch.is_active %}
+                <input type="radio" id="on" value="on" name="active1" checked>
                 <label for="on">On</label>
-                <input type="radio" id="off" name="active1">
+                <input type="radio" id="off" value="off" name="active1">
                 <label for="off">Off</label>
-              {% else %}
-              <input type="radio" id="on" name="active1">
+                {% else %}
+                <input type="radio" id="on" value="on" name="active1">
                 <label for="on">On</label>
-                <input type="radio" id="off" name="active1" checked>
+                <input type="radio" id="off" value="off" name="active1" checked>
                 <label for="off">Off</label>
-            </div>
                 {% endif %}
+            </div>
+                
           </div>
-      </div>
         
         
-    <div class="row" style="padding-top: 10px;">
-        <div class="col-lg-3">
-        <button class="btn btn-success" style="margin: auto" type="submit">Update</button> 
+      <div class="row" style="padding-top: 10px;">
+          <div class="col-lg-3">
+          <button class="btn btn-success" style="margin: auto" type="submit">Update</button> 
+          </div>
         </div>
-      </div>
     </form>
     
     
 </section>
 {% endfor %}
 
+</div>
+</div>
+<div class="col-lg-3"></div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-3"></div>
+   <div class="col-lg-6">
+    <center><button class="btn_1" onclick="change_display('div7')">Geolocation</button></center>
+<div id="div7">
+  {% for location in  geolocations %}
+  <section class="container" style="padding:50px;margin-top: 60px; background-color: white;">
+      
+    <center style="padding:10px;margin:0 50px"><h4> {{location.address}}</h4>
+      </center>
+ 
+    <form action="{% url 'update_geolocation' id=location.id %}" method="post">{% csrf_token %}
+      
+        <div class="row" style="padding-top: 10px;">
+           <div class="col-lg-3"></div>
+          <div class="col-lg-6" style="padding: 10px">
+            <label for="address">Choose a Address:</label><br>
+
+            <select name="address" id="address" style="width: 300px;">
+              {% for address in all_address %}
+              {% if address == location.address %}
+              <option value="{{address.id}}" selected>{{address}}</option>
+              {% else %}
+              <option value="{{address.id}}">{{address}}</option>
+              {% endif %}
+              {% endfor %}       
+            </select>
+          </div>   
+      </div>
+      <div class="row">
+          <div class="col-lg-3"></div>
+
+      <div class="col-lg-6"style="padding: 10px">
+              <label for="input3" class="form-label">Latitude</label>
+              <input type="number" class="form-control" id="input3" placeholder="Latitude" value="{{location.lat}}" name="latitude">
+       </div>
+            <div class="col-lg-3"></div>
+      </div>
+        
+        <div class="row" style="padding-top: 10px;">
+          <div class="col-lg-3"></div>
+          <div class="col-lg-6" style="padding: 10px">
+        <label for="input2" class="form-label">Longitude</label>
+        <input type="number" class="form-control" id="input2" placeholder="Longitude" value="{{location.lng}}" name="longitude">
+          </div>
+          <div class="col-lg-3"></div>
+          
+      </div>    
+    <div class="row" style="padding-top: 10px;">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-3">
+        <button class="btn btn-success" style="margin: auto" type="submit">Update</button> 
+        
+        </div>
+      </div>
+    </form>
+</section>
+{% endfor %}
 </div>
 </div>
 <div class="col-lg-3"></div>
@@ -597,10 +670,6 @@
 </section>
 
 
-<!-- Optional JavaScript -->
-<!-- Popper.js first, then Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
 </body>
 </html>
 {% endblock %}

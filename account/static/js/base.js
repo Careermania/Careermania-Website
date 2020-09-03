@@ -55,4 +55,12 @@ function myFunction6() {
     x.style.display = "none";
   }
 }
+function change_display(id) {
+  var x = document.getElementById(id);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
   
