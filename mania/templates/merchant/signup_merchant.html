@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	  {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Jockey+One&display=swap" rel="stylesheet">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	  <link rel="stylesheet" href="{% static 'css/signup_merchant.css' %}">	
+	 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+      <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <title>Signup page</title>
+  </head>
+  <body>
+  <div class="main">
+  <div class="container">
+  <br><br>
+  <div class="row">
+  <div class="col-lg-5 slide">
+     <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="{% static 'img/merchant11.jpeg' %}" alt="Los Angeles" style="width:100%;height:720px;filter:blur(8px);-webkit-filter:blur(4px);">
+		<div class="imgg" > <img src="{% static 'img/logo_cm.jpg' %}" style="border-radius:50%;"></div>
+		<div class="centered"> &nbsp; Welcome to Career Maniaa</div>
+		<div class="textt" > Merchant Page</div>
+      </div>
+    </div>
+</div>
+</div>
+  <div class="col-lg-7 back">
+  <br>
+	 <div class="row">
+	 <div class="col-lg-12"> 
+	 <a href="#"  style="color:black;font-size:16px;"><b>Register Merchant</b></a>  
+	 </div>
+	 </div>
+	 <br>
+	 
+	 
+     <div class="row">
+	 <div class="col-lg-7 vl" style="border-right-color:black;">
+	 <div style="margin-left:50px;">
+	 <h5><b>We will need :</b></h5>
+	 </div>
+	 <br>
+	 <form class="form" action="register_merchant" method="POST">{% csrf_token %}
+	  <div class="input-icons">
+	 <input type="text" class="text-line " placeholder="First Name" name="fname" required>
+	  <i class="fa fa-meh-o" aria-hidden="true"></i>
+	  </div>
+	  <div class="input-icons">
+	 <input type="text" class="text-line " placeholder="Last Name" name="lname" required>
+	 <i class="fa fa-meh-o" aria-hidden="true"></i>
+	 </div>
+	 <div class="input-icons">
+	 <input type="text" class="text-line " placeholder="Username" name="username" required>
+	  <i class="fa fa-user icon">  </i>
+	  </div>
+	 <div class="input-icons">
+	 <input type="text" class="text-line" placeholder="College Or Classess" name="organization" required>
+	 <i class="fa fa-university" aria-hidden="true"></i>
+	 </div>
+	 <div class="input-icons">
+	 <input type="email" class="text-line " placeholder="Email" name="email" required>
+	 <i class="fa fa-envelope" aria-hidden="true"></i>
+	 </div>
+	 <div class="input-icons">
+		<input type="text" class="text-line " placeholder="Mobile" name="mobile" required>
+		<i class="fa fa-envelope" aria-hidden="true"></i>
+		</div>
+	<div class="input-icons">
+		<label for="stream">Choose a Stream:</label>
+
+		<select name="stream" id="stream" style="height:30px;margin: 5px;">
+		<option value="Arts">Arts</option>
+		<option value="Science">Science</option>
+		<option value="Commerce">Commerce</option>
+		<option value="Music">Music</option>
+		<option value="Dance">Dance</option>
+		<option value="Sports">Sports</option>
+		</select>
+	</div>
+	 <div class="input-icons">
+	   <input type="password"  class="text-line " placeholder="Password" id ="myInput" name="password" required>
+	   <br>
+	   <center>
+	   <input type="checkbox" onclick="merchant()"><span style="padding: 5px;">Show Password</span></center>
+	   </div>
+		<div style="color:red">{{error}}</div>
+		<div style="color:green">{{success}}</div>
+		<br>
+	  <button type="submit">Signup</button> 
+	 </form>
+	 
+	 </div>
+	 <div class="col-lg-5" >
+	     <center>
+	   <h4 style="margin-top:50%;">  Also you can Register with </h4>
+	   <div style="">
+        <ul style="list-style-type: none;">
+          <li style="display: inline-block;padding: 10px;"><img src="{% static 'img/facebook.png' %}" width="40" height="40"></li>
+          <li style="display: inline-block;padding: 10px;"><img src="{% static 'img/google.png' %}" width="40" height="40"></li>
+        </ul>
+      </div>
+       <center>
+	 
+	 </div>
+	 </div>
+	 <br><br>
+	 
+	 
+	
+  </div>
+  </div>
+  </div>
+  <br><br>
+  </div>
+  </body>

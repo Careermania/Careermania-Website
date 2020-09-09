@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% load static %}
+	<title>Login Merchant</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/login_merchant.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="cont">
+    <div class="form sign-in">
+      <h2>Merchant Sign In</h2>
+      <form action="login_merchant" method="POST">{% csrf_token %}
+      <label>
+        <span>Email Address</span>
+        <input type="email" name="email">
+      </label>
+      <label>
+        <span>Password</span>
+        <input type="password" name="password">
+      </label>
+      <button class="submit" type="submit">Sign In</button>
+      <a href="reset_password"><p class="forgot-pass">Forgot Password ?</p></a>
+
+      <div class="social-media">
+        <ul>
+          <li><img src="{% static 'img/facebook.png' %}"></li>
+          <li><img src="{% static 'img/google.png' %}"></li>
+        </ul>
+      </div>
+      </form>
+    </div>
+
+    <div class="sub-cont">
+      <div class="img">
+        <div class="img-text m-up">
+          <h2>New here?</h2>
+          <p>Sign up and discover great amount of new opportunities!</p>
+        </div>
+        
+        <div class="my-btn">
+          <a href="register_merchant"><p>Sign up</p></a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+<!--script type="text/javascript" src="{% static 'js/script.js' %}"></script-->
+</body>
+</html>
