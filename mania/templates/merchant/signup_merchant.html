@@ -21,7 +21,8 @@
     <title>Signup page</title>
   </head>
   <body>
-  <div class="main">
+  
+<div class="main">
   <div class="container">
   <br><br>
   <div class="row">
@@ -41,7 +42,7 @@
     </div>
 </div>
 </div>
-  <div class="col-lg-7 back">
+  <div class="col-lg-7" style="background-color: white;">
   <br>
 	 <div class="row">
 	 <div class="col-lg-12"> 
@@ -96,9 +97,8 @@
 	</div>
 	 <div class="input-icons">
 	   <input type="password"  class="text-line " placeholder="Password" id ="myInput" name="password" required>
+	   <i class="fa fa-eye" aria-hidden="true" onclick="merchant()" style="cursor: pointer;"></i>
 	   <br>
-	   <center>
-	   <input type="checkbox" onclick="merchant()"><span style="padding: 5px;">Show Password</span></center>
 	   </div>
 		<div style="color:red">{{error}}</div>
 		<div style="color:green">{{success}}</div>
@@ -107,14 +107,17 @@
 	 </form>
 	 
 	 </div>
-	 <div class="col-lg-5" >
+	 <div class="col-lg-5" style="margin-top: 100px;padding-top: 80px;">
 	     <center>
-	   <h4 style="margin-top:50%;">  Also you can Register with </h4>
+	   <h4>  Also you can Register with </h4>
 	   <div style="">
         <ul style="list-style-type: none;">
           <li style="display: inline-block;padding: 10px;"><img src="{% static 'img/facebook.png' %}" width="40" height="40"></li>
           <li style="display: inline-block;padding: 10px;"><img src="{% static 'img/google.png' %}" width="40" height="40"></li>
-        </ul>
+		</ul>
+		<center>
+			<h4 style="padding-top: 20px;">Already registered ?</h4><br>
+			<a href="login_merchant"><button class="btn btn-warning">Login</button></a></center>
       </div>
        <center>
 	 

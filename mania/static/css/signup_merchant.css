@@ -3,10 +3,6 @@
 	background-color:  #234262;
 	}
 	
-.back{
-	background-color:white;	
-}
-
 .slide{
 	margin-right:-10px;
 }
@@ -70,15 +66,13 @@
   opacity: 0.5; /* Firefox */
 }
 .input-icons i { 
-            position: absolute; 
-			
-			border-color:grey;
-        } 
+  border-color:grey;
+} 
           
-        .input-icons { 
-            width: 100%; 
-            margin-bottom: 10px; 
-        } 
+.input-icons { 
+  width: 100%; 
+  margin-bottom: 10px; 
+} 
 
 button {
   background-color:#234262;
@@ -87,7 +81,6 @@ button {
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
-  cursor: pointer;
   width: 120px;
   border-radius:8px; 
   
@@ -96,6 +89,7 @@ button {
 button:hover {
   opacity: 0.8;
 }
+
 .imgg {
   position: absolute;
   top: 20%;
