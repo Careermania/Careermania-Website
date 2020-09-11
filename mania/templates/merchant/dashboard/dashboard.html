@@ -1,0 +1,485 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {% load static %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Bootstrap Advance Admin Template</title>
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" />
+       <!--CUSTOM BASIC STYLES-->
+    <link href="{% static 'css/basic.css' %}" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="merchant">Merchant Dashboard</a>
+            </div>
+
+            <div class="header-right">
+
+                <a href="messages" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+                <a href="components" class="btn btn-primary" title="New Notification"><b>40 </b><i class="fa fa-bars fa-2x"></i></a>
+                <a href="logout" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+
+            </div>
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <div class="user-img-div">
+                            <img src="{% static 'img/user.png' %}" class="img-thumbnail" />
+
+                            <div class="inner-text">
+                                {{merchant.username}}
+                            <br />
+                                <small>Last Login : 2 Weeks Ago </small>
+                            </div>
+                        </div>
+
+                    </li>
+
+
+                    <li>
+                        <a  href="merchant"><i class="fa fa-dashboard "></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-bicycle "></i>Profile <span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+
+                              <li>
+                                <a href="forms"><i class="fa fa-code "></i>General Settings</a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-yelp "></i>Booking Status <span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="invoice"><i class="fa fa-coffee"></i>Booking</a>
+                            </li>
+                              <li>
+                                <a href="components"><i class="fa fa-key "></i>Reports</a>
+                            </li>
+
+                             <li>
+                                <a href="messages"><i class="fa fa-recycle "></i>Category</a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-flash "></i>Courses  <span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+						       
+							   <li>
+                                <a href="products"><i class="fa fa-code "></i>Courses type</a>
+                            </li>
+
+                              <li>
+                                <a href="products"><i class="fa fa-code "></i>Addons</a>
+                            </li>
+							<li>
+                                <a href="products"><i class="fa fa-code "></i>Payments</a>
+                            </li>
+							<li>
+                                <a href="products"><i class="fa fa-code "></i>Offers</a>
+                            </li>
+							<li>
+                                <a href="products"><i class="fa fa-code "></i>Reviews</a>
+                            </li>
+							<li>
+                                <a href="products"><i class="fa fa-code "></i>Invoice</a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+
+                     <li>
+                        <a href="gallery"><i class="fa fa-anchor "></i>Contact & Location </a>
+                    </li>
+                     <li>
+                        <a href="error"><i class="fa fa-bug "></i>Classes and logo</a>
+                    </li>
+                    <li>
+                        <a href="logout"><i class="fa fa-square-o "></i>Logout</a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-head-line">DASHBOARD</h1>
+                        <h1 class="page-subhead-line"></h1>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="main-box mb-red">
+                            <a href="#">
+                                <i class="fa fa-bolt fa-5x"></i>
+                                <h5>Zero Issues</h5>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="main-box mb-dull">
+                            <a href="#">
+                                <i class="fa fa-plug fa-5x"></i>
+                                <h5>40 Task In Check</h5>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="main-box mb-pink">
+                            <a href="#">
+                                <i class="fa fa-dollar fa-5x"></i>
+                                <h5>200K Pending</h5>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /. ROW  -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div id="reviews" class="carousel slide" data-ride="carousel">
+
+                                    <div class="carousel-inner">
+                                        <div class="item active">
+
+                                            <div class="col-md-12 col-md-offset-1">
+
+                                                <h2><i class="fa fa-quote-left"></i>Growth is never by mere chance, it is the result of forces<br>
+                                                   working together.<i class="fa fa-quote-right"></i></h2>
+
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="col-md-12 col-md-offset-1">
+
+                                                <h2><i class="fa fa-quote-left"></i>Strength and growth come only through continuous effort <br>
+                                                  and struggle. <i class="fa fa-quote-right"></i></h2>
+                                            </div>
+
+                                        </div>
+                                        <div class="item">
+                                            <div class="col-md-12 col-md-offset-1">
+
+                                                <h2><i class="fa fa-quote-left"></i>No company can afford not to move forward. <br>
+                                                  It may be at the top of the heap today but at the bottom of the leap<br>
+                                                   tomorrow, if it doesn't.<i class="fa fa-quote-right"></i></h2>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--INDICATORS-->
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#reviews" data-slide-to="0" class="active"></li>
+                                        <li data-target="#reviews" data-slide-to="1"></li>
+                                        <li data-target="#reviews" data-slide-to="2"></li>
+                                    </ol>
+                                    <!--PREVIUS-NEXT BUTTONS-->
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /. ROW  -->
+                        <hr />
+
+                        <div class="panel panel-default">
+
+                            <div id="carousel-example" class="carousel slide" data-ride="carousel" style="border: 5px solid #000;">
+
+                                <div class="carousel-inner">
+                                    <div class="item active">
+
+                                        <img src="{% static 'img/slider1.jpg' %}" alt="" style="width: 100%" />
+
+                                    </div>
+                                    <div class="item">
+                                        <img src="{% static 'img/mobile-repairing.jpg' %}" alt="" style="width: 100%"/>
+
+                                    </div>
+                                    <div class="item">
+                                        <img src="{% static 'img/slider5.jpg' %}" alt="" style="width: 100%"/>
+
+                                    </div>
+                                </div>
+                                <!--INDICATORS-->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel-example" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-example" data-slide-to="1"></li>
+                                    <li data-target="#carousel-example" data-slide-to="2"></li>
+                                </ol>
+                                <!--PREVIUS-NEXT BUTTONS-->
+                                <a class="left carousel-control" href="#carousel-example" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-example" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.REVIEWS &  SLIDESHOW  -->
+
+                    <!--/.Chat Panel End-->
+                </div>
+                <!-- /. ROW  -->
+
+
+                <div class="row">
+
+                    <div class="col-md-8">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item active">
+                              <h1 class="list-group-item-text" style="text-align:center;">Communicate to the world.</h1>
+                                <h2 class="list-group-item-text" style="line-height: 30px;text-align:center;">
+                                Your business everywhere.<br>
+                                  Your potential. Our passion.<br>
+                                 Your Vision, Our Future.</h2>
+                            </a>
+                        </div>
+                        <br />
+                        <!-- 16:9 aspect ratio -->
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" width="420" height="315" src="https://www.youtube.com/embed/aEkgFc8jMwk?"></iframe>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <i class="fa fa-bell fa-fw"></i>Notifications Panel
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="list-group">
+
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-twitter fa-fw"></i>3 New Followers
+                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
+                                    </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-envelope fa-fw"></i>Message Sent
+                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
+                                    </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-tasks fa-fw"></i>New Task
+                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
+                                    </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-upload fa-fw"></i>Server Rebooted
+                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
+                                    </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-bolt fa-fw"></i>Server Crashed!
+                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
+                                    </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-warning fa-fw"></i>Server Not Responding
+                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
+                                    </span>
+                                    </a>
+
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-bolt fa-fw"></i>Server Crashed!
+                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
+                                    </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-warning fa-fw"></i>Server Not Responding
+                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
+                                    </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-shopping-cart fa-fw"></i>New Order Placed
+                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
+                                    </span>
+                                    </a>
+                                </div>
+                                <!-- /.list-group -->
+                                <a href="#" class="btn btn-info btn-block">View All Alerts</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--/.Row-->
+                <hr />
+                <div class="row">
+
+                    <div class="col-md-8">
+
+
+                        <div id="comments-sec">
+                            <h4><strong>Complaint Box </strong></h4>
+                            <hr />
+
+
+                            <div class="form-group  ">
+                                <label>Please Write a Subject Line</label>
+                                <input type="text" class="form-control" required="required" placeholder="Enter Subject Of Ticket" />
+                            </div>
+                            <div class="form-group ">
+                                <label>Please Enter Issue</label>
+                                <textarea class="form-control" rows="8"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Compose &amp; Send</button>
+                            </div>
+                        </div>
+
+
+
+                        </div>
+
+
+
+
+
+                    <div class="col-md-4">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                Recent Comments Example
+                            </div>
+                            <div class="panel-body">
+                                <ul class="media-list">
+
+                                    <li class="media">
+
+                                        <div class="media-body">
+
+                                            <div class="media">
+                                                <a class="pull-left" href="#">
+                                                    <img class="media-object img-circle img-comments" src="{% static 'img/user.png' %}" />
+                                                </a>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading">Nulla gravida vitae  </h4>
+                                                    Donec sit amet ligula enim. Duis vel condimentum massa.
+
+              <!-- Nested media object -->
+                                                    <div class="media">
+                                                        <a class="pull-left" href="#">
+                                                            <img class="media-object img-circle img-comments" src="{% static 'img/user.gif' %}" />
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <h4 class="media-heading">Amet ligula enim</h4>
+                                                            Donec sit amet ligula enim .
+                                                        </div>
+                                                    </div>
+                                                    <div class="media">
+                                                        <a class="pull-left" href="#">
+                                                            <img class="media-object img-circle img-comments" src="{% static 'img/user.png' %}" />
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <h4 class="media-heading">Donec t ligula enim</h4>
+                                                            Donec sit amet  amet ligula enim .
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/.Row-->
+                <hr/>
+                <div class="row" style="padding-bottom: 100px;">
+                   <div class="col-md-12">
+                        <div class="panel panel-back noti-box">
+                            <span class="icon-box bg-color-black">
+                                <i class="fa fa-bicycle"></i>
+                            </span>
+                            <div class="text-box">
+                                <p class="main-text">52 Important Issues to Fix </p>
+                                <p>Please fix these issues to work smooth</p>
+                                <p>Time Left: 30 mins</p>
+                                <hr />
+                                <p>
+                                    <span class=" color-bottom-txt"><i class="fa fa-edit"></i>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit gthn.
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit gthn.
+                               Lorem ipsum dolor sit amet, consectetur adipiscing elit gthn.
+
+                                    </span>
+
+
+                                </p>
+                                <hr />
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit gthn.
+                               Lorem ipsum dolor sit amet, consectetur adipiscing elit gthn.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/.ROW-->
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+
+    <div id="footer-sec">
+        &copy;YourCompany | Design By : Careermaniaa
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'js/jquery.metisMenu.js' %}"></script>
+       <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'js/custom.js' %}"></script>
+
+
+
+</body>
+</html>

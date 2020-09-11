@@ -48,8 +48,7 @@ def login_merchant(request):
         user = authenticate(email=email, password=password)
         if user is not None and user.is_merchant:
             login(request, user)
-            return HttpResponse("Logged In Successfully")
-                #return HttpResponseRedirect(reverse('merchant'))
+            return HttpResponseRedirect(reverse('merchant'))
         return render(request, 'merchant/login_merchant.html', {'error': 'Invalid Username or Password.'})
     return render(request, 'merchant/login_merchant.html')
 
@@ -90,9 +89,37 @@ def merchant_dashboard(request):
             geolocation = None
         context = {'merchant': request.user, 'coaching': coaching, 'branch': branch, 'address': address, 'course': course, 
         'faculty': faculty, 'batch': batch, 'info': info, 'geolocation': geolocation}
-        return render(request, 'index.html', context=context)
-    return render(request, 'signup_merchant.html')
+        return render(request, 'merchant/dashboard/dashboard.html', context=context)
+    return render(request, 'merchant/login_merchant.html')
 
+
+@login_required
+def merchant_messages(request):
+    return render(request, 'merchant/dashboard/message-task.html')
+
+@login_required
+def merchant_components(request):
+    return render(request, 'merchant/dashboard/component.html')
+    
+@login_required
+def merchant_error(request):
+    return render(request, 'merchant/dashboard/error.html')
+
+@login_required
+def merchant_forms(request):
+    return render(request, 'merchant/dashboard/form-advance.html')
+
+@login_required
+def merchant_gallery(request):
+    return render(request, 'merchant/dashboard/gallery.html')
+
+@login_required
+def merchant_invoice(request):
+    return render(request, 'merchant/dashboard/invoice.html')
+
+@login_required
+def merchant_products(request):
+    return render(request, 'merchant/dashboard/product.html')
 
 @login_required
 def logout_user(request):

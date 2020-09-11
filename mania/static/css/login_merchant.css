@@ -1,6 +1,7 @@
 
 body{
-  background: -webkit-linear-gradient(left, #7579ff, #b224ef);
+  /*background: -webkit-linear-gradient(left, #7579ff, #b224ef);*/
+  background-color:  #234262;
   font-family: 'Nunito', sans-serif;
 }
 

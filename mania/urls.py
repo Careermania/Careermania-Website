@@ -11,6 +11,16 @@ urlpatterns = [
     path('login_merchant', views.login_merchant, name='login_merchant'),
     path('merchant', views.merchant_dashboard, name='merchant'),
     path('logout', views.logout_user, name='logout'),
+
+    path('messages', views.merchant_messages, name="merchant_messages"),
+    path('components', views.merchant_components, name="merchant_components"),
+    path('error', views.merchant_error, name="merchant_error"),
+    path('forms', views.merchant_forms, name="merchant_forms"),
+    path('gallery', views.merchant_gallery, name="merchant_gallery"),
+    path('invoice', views.merchant_invoice, name="merchant_invoice"),
+    path('products', views.merchant_products, name="merchant_products"),
+    
+
     path('reset_password', auth_views.PasswordResetView.as_view(), name='reset_password'),
     path('reset_password_sent', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
