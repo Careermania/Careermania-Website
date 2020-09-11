@@ -169,7 +169,7 @@ class ActivateAccountView(View):
             user.is_active = True
             user.save()
             messages.add_message(request, messages.INFO, 'Account Activated Successfully.')
-            return redirect('login')
+            return redirect('login_merchant')
         return render(request, 'confirmation/activate_failed.html', status=401)
 
 @login_required(login_url='index')
