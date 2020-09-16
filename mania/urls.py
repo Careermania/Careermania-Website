@@ -27,7 +27,7 @@ urlpatterns = [
     path('reset_password_complete', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('activate/<uidb64>/<token>', views.ActivateAccountView.as_view(), name="activate"),
 
-    path('add_coaching', views.add_coaching, name='add_coaching'),
+    path('add_coaching/<user>', views.add_coaching, name='add_coaching'),
     path('add_coaching_metadata', views.add_coaching_metadata, name='add_coaching_data'),
     path('add_branch', views.add_branch, name='add_branch'),
     path('add_address' , views.add_address, name='add_address'),

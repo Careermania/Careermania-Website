@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-      {% load static %}
+      {% load static %}{% load socialaccount %}
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,13 +33,13 @@
                       </label>
                       <br>
                       <div style="color: red;"><center>{{error}}</center></div>
-                      <button class="submit" type="submit">Sign In</button>
+                      <center><button type="submit">Sign In</button></center>
                       <a href="reset_password"><p class="forgot-pass">Forgot Password ?</p></a>
 
                       <div class="social-media">
                         <ul>
-                          <li><img src="{% static 'img/facebook.png' %}"></li>
-                          <li><img src="{% static 'img/google.png' %}"></li>
+                          <li><a href="{% provider_login_url 'facebook'  %}" ><img src="{% static 'img/facebook.png' %}"></li></a>
+                          <li><a href="{% provider_login_url 'google' %}"><img src="{% static 'img/google.png' %}"></li></a>
                         </ul>
                       </div>
                       </form>
@@ -52,11 +52,12 @@
                     <div class="img-text m-up">
                       <h2>New here?</h2>
                       <p>Sign up and discover great amount of new opportunities!</p>
+                      <center><a href="register_merchant"><button>
+                        Sign Up
+                      </button></a></center>
                     </div>
 
-                    <div class="my-btn">
-                      <a href="register_merchant"><p>Sign up</p></a>
-                    </div>
+                    
 
             </div>
         </div>

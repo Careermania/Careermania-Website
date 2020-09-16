@@ -1,0 +1,14 @@
+{% autoescape off %}
+
+Hi {{user.username}}
+
+Careermaniaa Welcomes You.
+
+Thanks for joining us.
+
+Please click this link below to fill the required information
+
+{{domain}}{% url 'add_coaching' user=user %}
+
+
+{% endautoescape %}

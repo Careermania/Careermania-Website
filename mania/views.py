@@ -37,6 +37,7 @@ def register_merchant(request):
             stream=stream, merchant=user)
             merchant.save()
             send_confirmation_email(request, user)
+            add_forms_mail(request, user)
             return render(request, 'merchant/signup_merchant.html', {'success': 'Verification Mail Sent Successfully. Please Verify your Account.'})
            
     return render(request, "merchant/signup_merchant.html")
@@ -138,12 +139,12 @@ from django.contrib import messages
 from django.views import View
 
 def send_confirmation_email(request, user):
-    current_site = get_current_site(request)
+    current_site = 'http://127.0.0.1:8000'
     email_subject = 'Activate Your Account'
     message = render_to_string('confirmation/activate.html',
                             {
                                 'user': user, 
-                                'domain': current_site.domain, 
+                                'domain': current_site, 
                                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                                 'token': generate_token.make_token(user)
                             })
@@ -157,6 +158,23 @@ def send_confirmation_email(request, user):
 
     email_message.send()
 
+def add_forms_mail(request, user):
+    current_site = 'http://127.0.0.1:8000'
+    email_subject = 'Fill the Information'
+    message = render_to_string('merchant/forms.html',
+                            {
+                                'user': user, 
+                                'domain': current_site, 
+                            })
+
+    email_message = EmailMessage(
+    email_subject,
+    message,
+    settings.EMAIL_HOST_USER,
+    [user.email],
+    )
+
+    email_message.send()
 
 class ActivateAccountView(View):
     def get(self, request, uidb64, token):
@@ -173,8 +191,9 @@ class ActivateAccountView(View):
         return render(request, 'confirmation/activate_failed.html', status=401)
 
 @login_required(login_url='index')
-def add_coaching(request):
-    if request.user.is_merchant:
+def add_coaching(request, user):
+    user = User.objects.get(email=user)
+    if user.is_merchant:
         if request.method == "POST":
             name = request.POST['name']
             description = request.POST['description']
@@ -183,7 +202,7 @@ def add_coaching(request):
             coaching = Coaching(name=name, description=description, merchant=merchant,logo=image)
             coaching.save()
             return HttpResponseRedirect(reverse('merchant'))
-        return render(request, 'add_coaching.html', {'merchant': request.user})
+        return render(request, 'merchant/dashboard/add_coaching.html', {'merchant': user})
     return render(request, 'signup.html')
 
 @login_required(login_url='index')
