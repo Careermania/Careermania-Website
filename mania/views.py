@@ -6,8 +6,11 @@ from .decorators import unauthenticated_user
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 # Create your views here.
-
+from django.contrib.sites.models import Site
 def index(request):
+    sites = Site.objects.all()
+    for site in sites:
+        print(site.id, site.domain, site.name)
     return render(request, 'merchant/index.html')
 
 def register_merchant(request):
