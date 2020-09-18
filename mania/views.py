@@ -9,9 +9,10 @@ from django.urls import reverse
 from django.contrib.sites.models import Site
 def index(request):
     sites = Site.objects.all()
+    lst = []
     for site in sites:
-        print(site.id, site.domain, site.name)
-    return render(request, 'merchant/index.html')
+        lst.append([site.id, site.domain, site.name])
+    return render(request, 'merchant/index.html', {'lst':lst})
 
 def register_merchant(request):
     if request.method == "POST":
