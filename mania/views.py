@@ -31,13 +31,12 @@ def register_merchant(request):
                     return render(request, 'merchant/signup_merchant.html', {'error': 'User already exist with this Username.'})
         except:
             user = User.objects.create_merchant(email, username, password)
-            user.is_active = True
+            user.is_active = False
             user.save()
             merchant = Merchant_Details(first_name=fname, last_name=lname, email=email, mobile=mobile, organization=organization,
             stream=stream, merchant=user)
             merchant.save()
             send_confirmation_email(request, user)
-            add_forms_mail(request, user)
             return render(request, 'merchant/signup_merchant.html', {'success': 'Verification Mail Sent Successfully. Please Verify your Account.'})
            
     return render(request, "merchant/signup_merchant.html")
@@ -139,12 +138,12 @@ from django.contrib import messages
 from django.views import View
 
 def send_confirmation_email(request, user):
-    current_site = 'http://127.0.0.1:8000'
+    current_site = get_current_site(request)
     email_subject = 'Activate Your Account'
     message = render_to_string('confirmation/activate.html',
                             {
                                 'user': user, 
-                                'domain': current_site, 
+                                'domain': current_site.domain, 
                                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                                 'token': generate_token.make_token(user)
                             })
@@ -159,12 +158,12 @@ def send_confirmation_email(request, user):
     email_message.send()
 
 def add_forms_mail(request, user):
-    current_site = 'http://127.0.0.1:8000'
+    current_site = get_current_site(request)
     email_subject = 'Fill the Information'
     message = render_to_string('merchant/forms.html',
                             {
                                 'user': user, 
-                                'domain': current_site, 
+                                'domain': current_site.domain, 
                             })
 
     email_message = EmailMessage(
@@ -187,6 +186,7 @@ class ActivateAccountView(View):
             user.is_active = True
             user.save()
             messages.add_message(request, messages.INFO, 'Account Activated Successfully.')
+            add_forms_mail(request, user)
             return redirect('login_merchant')
         return render(request, 'confirmation/activate_failed.html', status=401)
 
