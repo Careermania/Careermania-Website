@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>Add Course</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+
+</head>
+<body>
+<center><h2>Add Course</h3>
+</center>
+<table align="center" cellpadding = "10">
+  <form action="{% url 'add_course' user=merchant.username %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+<!--------------------- First Name ------------------------------------------>
+<tr>
+<td>Select a Branch</td>
+<td><select name="branch" id="branch"> 
+               {% for branch in branches %}
+               <option value="{{branch}}">{{branch}}</option>
+               {% endfor %}
+            </select> 
+</td>
+</tr>
+ 
+<!------------------------ Last Name --------------------------------------->
+<tr>
+<td>Name Of Course</td>
+<td><input type="text" name="name" maxlength="50" placeholder="Name" style="width: 200px;"/>
+
+</td>
+</tr>
+ 
+<!-------------------------- Email ID ------------------------------------->
+<tr>
+  <td>Description<br /><br /><br /></td>
+  <td><textarea name="description" rows="5" cols="23"></textarea></td>
+  </tr>
+ 
+
+<tr>
+<td>Starting Date</td>
+
+<td>
+<input type="date" name="start">
+</td>
+</tr>
+
+  <td>End Date</td>
+
+  <td>
+    <input type="date" name="end">
+    </td>
+    </tr>
+<!------------------------- FEE ---------------------------------->
+<tr>
+<td>Fee</td>
+<td><input type="text" name="fees" maxlength="50" placeholder="Fees" style="width: 200px;">
+
+</td>
+</tr>
+
+ 
+<!------------------------- Currency ---------------------------------->
+<tr>
+<td>Currency</td>
+<td><input type="text" name="currency" maxlength="50" placeholder="Currency"/ style="width: 200px;">
+
+</td>
+</tr>
+<!----------------syllabus----------------->
+ <tr>
+<td>Syllabus</td>
+<td>
+<input type="file" id="myFile" name="syllabus">
+</td>
+</tr>
+<!---------------active--->
+ <tr>
+<td>Active</td>
+<td>
+<input type="radio" name="active" value="on" />
+On<br>
+<input type="radio" name="active" value="OFF" />
+Off
+</td>
+</tr>
+<!----------------------- Submit and Reset ------------------------------->
+<tr>
+<td colspan="2" align="center">
+<input type="Submit" value="Submit">
+<input type="reset" value="Reset">
+<a href="{% url 'add_faculty' user=merchant.username %}"><button> SKIP</button> </center></a>
+</td>
+</tr>
+
+
+</form>
+</table>
+ 
+</body>
+</html>

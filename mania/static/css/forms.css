@@ -1,0 +1,53 @@
+body {
+  background-color :#3061cf;
+} 
+
+table {
+  background-image: url(../img/back.jpg);
+} 
+h2{
+  font-family: Sans-serif; 
+  font-size: 24px;         
+  font-style: normal; 
+  font-weight: bold; 
+  color: black;
+  text-align: center; 
+  text-decoration: none;
+  padding-top: 30px;
+}
+
+table{
+  font-family: verdana; 
+  color:white; 
+  font-size: 16px; 
+  font-style: normal;
+  font-weight: bold;
+  background-color: #545569; 
+  border-collapse: collapse; 
+  border: 0px solid #000000;
+   box-shadow: 15px 10px 18px black;
+  
+
+}
+table.inner{
+  border: 10px
+}
+
+input[type=text], input[type=email], input[type=number]{
+  width: 50%;
+  padding: 6px 12px;
+  margin: 5px 0;
+  box-sizing: border-box;
+}
+
+
+input[type=submit], input[type=reset]{
+
+  padding: 8px 12px;
+  margin: 5px 0;
+  box-sizing: border-box;
+}
+button{
+padding:8px;
+
+}

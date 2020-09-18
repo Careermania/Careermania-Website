@@ -52,8 +52,66 @@ def login_merchant(request):
         return render(request, 'merchant/login_merchant.html', {'error': 'Invalid Username or Password.'})
     return render(request, 'merchant/login_merchant.html')
 
+def forms_details(request, user):
+    user = User.objects.get(username=str(user))
+    if user.is_merchant:
+        try:
+            coaching = Coaching.objects.get(merchant=user)
+        except:
+            coaching = None
+        try:
+            branch = Branch.objects.get(coaching=coaching)
+        except:
+            branch = None
+        try:
+            address = Address.objects.get(branch=branch)
+        except:
+            address = None
+        try:
+            course = Course.objects.get(branch=branch)
+        except:
+            course = None
+        try:
+            faculty = CoachingFacultyMember.objects.get(coaching=coaching)
+        except:
+            faculty = None
+        try:
+            batch = Batch.objects.get(course=course)
+        except:
+            batch = None
+        try:
+            info = CoachingMetaData.objects.get(coaching=coaching)
+        except:
+            info = None
+        try:
+            geolocation = Geolocation.objects.get(address=address)
+        except:
+            geolocation = None
+        if not coaching:
+            return redirect('add_coaching', user=user.username)
+        if not info:
+            return redirect('add_coaching_metadata', user=user.username)
+        if not branch:
+            return redirect('add_branch', user=user.username)
+        if not address:
+            return redirect('add_address', user=user.username)
+        if not course:
+            return redirect('add_course', user=user.username)
+        if not faculty:
+            return redirect('add_faculty', user=user.username)
+        if not faculty:
+            return redirect('add_faculty', user=user.username)
+        if not batch:
+            return redirect('add_batch', user=user.username)
+        return HttpResponse("All Information Is Saved Successfully.")
+        
+        context = {'merchant': request.user, 'coaching': coaching, 'branch': branch, 'address': address, 'course': course, 
+        'faculty': faculty, 'batch': batch, 'info': info, 'geolocation': geolocation}
+    return render(request, 'merchant/login_merchant.html')
+
 @login_required(login_url='index')
-def merchant_dashboard(request):
+def merchant_dashboard(request, user):
+    user = User.objects.get(username=user)
     if request.user.is_merchant:
         try:
             coaching = Coaching.objects.get(merchant=request.user)
@@ -190,24 +248,23 @@ class ActivateAccountView(View):
             return redirect('login_merchant')
         return render(request, 'confirmation/activate_failed.html', status=401)
 
-@login_required(login_url='index')
 def add_coaching(request, user):
-    user = User.objects.get(email=user)
+    user = User.objects.get(username=user)
     if user.is_merchant:
         if request.method == "POST":
             name = request.POST['name']
             description = request.POST['description']
             image = request.FILES['image']
-            merchant = request.user
+            merchant = user
             coaching = Coaching(name=name, description=description, merchant=merchant,logo=image)
             coaching.save()
-            return HttpResponseRedirect(reverse('merchant'))
+            return redirect('add_coaching_metadata', user=user.username)
         return render(request, 'merchant/dashboard/add_coaching.html', {'merchant': user})
     return render(request, 'signup.html')
 
-@login_required(login_url='index')
-def add_coaching_metadata(request):
-    if request.user.is_merchant:
+def add_coaching_metadata(request, user):
+    user = User.objects.get(username=user)
+    if user.is_merchant:
         if request.method == "POST":
             name = request.POST['name']
             description = request.POST['description']
@@ -215,33 +272,33 @@ def add_coaching_metadata(request):
             contact2 = request.POST['contact2']
             establish = request.POST['date']
             owner_image = request.FILES['owner_image']
-            merchant = request.user
+            merchant = user
             coaching = Coaching.objects.get(merchant=merchant) 
             coaching_data = CoachingMetaData(coaching=coaching, contact=contact1, help_contact=contact2, 
             owner_name=name, owner_description=description, established_on=establish,owner_image=owner_image)
             coaching_data.save()
-            return HttpResponseRedirect(reverse('merchant'))
-        return render(request, 'add_coaching_metadata.html', {'merchant': request.user})
+            return redirect('add_branch', user=user.username)
+        return render(request, 'merchant/dashboard/add_coaching_metadata.html', {'merchant': user})
     return render(request, 'signup.html')
 
-@login_required(login_url='index')
-def add_branch(request):
-    if request.user.is_merchant:
+def add_branch(request, user):
+    user = User.objects.get(username=user)
+    if user.is_merchant:
         if request.method == "POST":
             name = request.POST['name']
-            branch_type = request.POST['branch_type']
-            merchant = request.user
+            branch_type = request.POST['type']
+            merchant = user
             coaching = Coaching.objects.get(merchant=merchant) 
             branch = Branch(name=name, coaching=coaching, branch_type=branch_type)
             branch.save()
-            return HttpResponseRedirect(reverse('merchant'))
-        return render(request, 'add_branch.html', {'merchant': request.user})
+            return redirect('add_address', user=user.username)
+        return render(request, 'merchant/dashboard/add_branch.html', {'merchant': user})
     return render(request, 'signup.html')
 
-@login_required(login_url='index')
-def add_address(request):
-    if request.user.is_merchant:
-        merchant = request.user
+def add_address(request, user):
+    user = User.objects.get(username=user)
+    if user.is_merchant:
+        merchant = user
         coaching = Coaching.objects.get(merchant=merchant) 
         if request.method == "POST":
             branch_taken = request.POST['branch']
@@ -252,24 +309,25 @@ def add_address(request):
             city = request.POST['city']
             district = request.POST['district']
             state = request.POST['state']
-            pincode = request.POST['pincode']
+            pincode = request.POST['pin']
             branch = Branch.objects.get(name=branch_taken)
             address = Address(line1=line, apartment=apartment, building=building, landmark=landmark, city=city,
             district=district, state=state, pincode=pincode, branch=branch)
             address.save()
-            return HttpResponseRedirect(reverse('merchant'))
+            return redirect('add_course', user=user.username)
         branches = Branch.objects.filter(coaching=coaching)
-        return render(request, 'add_address.html', {'merchant': request.user, 'branches': branches})
+        return render(request, 'merchant/dashboard/add_address.html', {'merchant': user, 'branches': branches})
     return render(request, 'signup.html')
 
-@login_required(login_url='index')
-def add_course(request):
-    if request.user.is_merchant:
-        merchant = request.user
+def add_course(request, user):
+    user = User.objects.get(username=user)
+    if user.is_merchant:
+        merchant = user
         coaching = Coaching.objects.get(merchant=merchant)
         if request.method == "POST":
             branch_taken = request.POST['branch']
-            stream = request.POST['stream']
+            details = Merchant_Details.objects.get(merchant=user)
+            stream = details.stream
             name = request.POST['name']
             description = request.POST['description']
             start = request.POST['start']
@@ -287,15 +345,15 @@ def add_course(request):
             elif active == "on":
                 course.is_active = True
             course.save()
-            return HttpResponseRedirect(reverse('merchant_filter'))
+            return redirect('add_faculty', user=user.username)
         branches = Branch.objects.filter(coaching=coaching)
-        return render(request, 'add_course.html', {'merchant': request.user, 'branches': branches})
+        return render(request, 'merchant/dashboard/add_course.html', {'merchant': user, 'branches': branches})
     return render(request, 'signup.html')
 
-@login_required(login_url='index')
-def add_batch(request):
-    if request.user.is_merchant:
-        merchant = request.user
+def add_batch(request, user):
+    user = User.objects.get(username=user)
+    if user.is_merchant:
+        merchant = user
         if request.method == "POST":
             name = request.POST['name']
             limit = request.POST['limit']
@@ -314,21 +372,20 @@ def add_batch(request):
             elif active == "on":
                 batch.is_active = True
             batch.save()
-            return HttpResponseRedirect(reverse('merchant'))
+            return redirect('add_geolocation', user=user.username)
         coaching = Coaching.objects.get(merchant=merchant)
         branches = Branch.objects.filter(coaching=coaching)
         courses = set()
         for branch in branches:
             courses = courses.union(Course.objects.filter(branch=branch))
         faculties = CoachingFacultyMember.objects.filter(coaching=coaching)
-        return render(request, 'add_batch.html', {'merchant': request.user, 'courses': courses, 'faculties': faculties})
+        return render(request, 'merchant/dashboard/add_batch.html', {'merchant': user, 'courses': courses, 'faculties': faculties})
     return render(request, 'signup.html')
 
-
-@login_required(login_url='index')
-def add_faculty(request):
-    if request.user.is_merchant:
-        merchant = request.user
+def add_faculty(request, user):
+    user = User.objects.get(username=user)
+    if user.is_merchant:
+        merchant = user
         coaching = Coaching.objects.get(merchant=merchant)
         if request.method == "POST":
             name = request.POST['name']
@@ -339,9 +396,30 @@ def add_faculty(request):
             faculty = CoachingFacultyMember(name=name, age=age, specialization=specialization, meta_description=description,
             coaching=coaching,faculty_image=faculty_image)
             faculty.save()
-            return HttpResponseRedirect(reverse('merchant'))
-        return render(request, 'add_coaching_faculty_member.html', {'merchant': request.user})
+            return redirect('add_batch', user=user.username)
+        return render(request, 'merchant/dashboard/add_faculty.html', {'merchant': user})
     return render(request, 'signup.html')
+
+def add_geolocation(request, user):
+    user = User.objects.get(username=user)
+    if user.is_merchant:
+        merchant = user
+        if request.method == "POST":
+            id = request.POST['address']
+            address = Address.objects.get(id=id)
+            latitude = request.POST['latitude']
+            longitude = request.POST['longitude']
+            geolocation = Geolocation(address=address, lat = latitude, lng = longitude )
+            geolocation.save()
+            return HttpResponse("All Information Is Saved Successfully.")
+        coaching = Coaching.objects.get(merchant=merchant)
+        branches = Branch.objects.filter(coaching=coaching)
+        all_address = []
+        for branch in branches:
+            all_address += list(Address.objects.filter(branch=branch))
+        return render(request, 'merchant/dashboard/add_geolocation.html', {'merchant': user, 'all_address': all_address})
+    return render(request, 'signup.html')
+
 
 @login_required(login_url='index')
 def merchant_filter_coaching(request):
@@ -404,28 +482,6 @@ def update_page(request):
         'faculties': faculties, 'batches': batches, 'info': info, 'geolocations': geolocations}
         return render(request, 'merchant_settings.html', context=context)
     return render(request, 'login.html')
-
-     
-
-@login_required(login_url='index')
-def add_geolocation(request):
-    if request.user.is_merchant:
-        merchant = request.user
-        if request.method == "POST":
-            id = request.POST['address']
-            address = Address.objects.get(id=id)
-            latitude = request.POST['latitude']
-            longitude = request.POST['longitude']
-            geolocation = Geolocation(address=address, lat = latitude, lng = longitude )
-            geolocation.save()
-            return HttpResponseRedirect(reverse('merchant'))
-        coaching = Coaching.objects.get(merchant=merchant)
-        branches = Branch.objects.filter(coaching=coaching)
-        all_address = []
-        for branch in branches:
-            all_address += list(Address.objects.filter(branch=branch))
-        return render(request, 'add_geolocation.html', {'merchant': request.user, 'all_address': all_address})
-    return render(request, 'signup.html')
 
 @login_required(login_url='index')
 def update_coaching(request):

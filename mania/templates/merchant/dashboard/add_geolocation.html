@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>Add Geolocation</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+
+</head>
+<body>
+<center><h2>Add Geolocation</h3>
+</center>
+<table align="center" cellpadding = "10">
+  <form action="{% url 'add_geolocation' user=merchant.username %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+
+
+<tr>
+<td>Select address</td>
+<td><select name="address" id="address" style="width: 200px;"> 
+  {% for address in all_address %}
+      <option value="{{address.id}}">{{address}}</option> 
+    {% endfor %}
+</select> 
+</td>
+</tr>
+
+ 
+ 
+<!------------------------  Name --------------------------------------->
+<tr>
+<td>Latitude</td>
+<td><input type="text" name="latitude" placeholder="Latitude" style="width: 200px;"/>
+
+</td>
+</tr>
+ 
+
+<!-------------------------- Student limit ------------------------------------->
+<tr>
+<td>Logitude</td>
+<td>
+<input type="text" name="longitude" placeholder="longitude" style="width: 200px;"/>
+
+</td>
+</tr>
+
+
+ 
+ 
+
+
+
+<!----------------------- Submit and Reset ------------------------------->
+<tr>
+<td colspan="2" align="center">
+<input type="Submit" value="Submit">
+<input type="reset" value="Reset">
+</form>
+<a href="{% url 'index' %}"><button> SKIP</button> </center></a>
+</td>
+</tr>
+
+
+
+</table>
+ 
+</body>
+</html>

@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>coaching Information</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+</head>
+<body>
+<center><h2>Add Coaching Information</h3>
+</center>
+<table align="center" cellpadding = "10">
+<form action="{% url 'add_coaching_metadata' user=merchant.username %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+<!--------------------- First Name ------------------------------------------>
+<tr>
+<td>Name Of Owner</td>
+<td><input type="text" name="name" maxlength="50" placeholder="Name" />
+
+</td>
+</tr>
+ 
+ 
+<!-------------------------- Mobile Number ------------------------------------->
+<tr>
+<td>Conatct 1</td>
+<td>
+<input type="text" name="contact1" maxlength="10" placeholder="Mobile"/>
+
+</td>
+</tr>
+<tr>
+<td>Contact 2</td>
+<td>
+<input type="text" name="contact2" maxlength="10" placeholder="Mobile"/>
+
+</td>
+</tr>
+<tr>
+<td>Profile picture</td>
+<td>
+<input type="file" id="myFile" name="owner_image">
+</td>
+</tr>
+ 
+ 
+
+<!--------------------------Date Of Birth----------------------------------->
+
+
+<tr>
+<td>Establised ON</td>
+
+<td>
+
+<input type="date" name="date">
+ 
+ 
+<!------------------------- Address ---------------------------------->
+<tr>
+<td>Description<br /><br /><br /></td>
+<td><textarea name="description" rows="10" cols="50"></textarea></td>
+</tr>
+
+  
+
+ 
+
+<!----------------------- Submit and Reset ------------------------------->
+<tr>
+<td colspan="2" align="center">
+<input type="Submit" value="Submit">
+<input type="reset" value="Reset">
+</form>
+<a href="{% url 'index' %}"><button> SKIP</button> </center></a>
+</td>
+</tr>
+
+
+
+</table>
+ 
+</body>
+</html>

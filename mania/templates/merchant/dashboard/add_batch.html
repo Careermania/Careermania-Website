@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>Add Batch</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+</head>
+<body>
+<center><h2>Add Batch</h3>
+</center>
+<table align="center" cellpadding = "10">
+  <form action="{% url 'add_batch' user=merchant.username %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+
+
+<tr>
+<td>Select a Course</td>
+<td><select name="course" id="course" style="width: 200px;"> 
+  {% for course in courses %}
+    <option value="{{course}}">{{course}}</option> 
+       {% endfor %}         
+    </select> 
+</td>
+</tr>
+
+<tr>
+<td>Select a Faculty</td>
+<td><select name="faculty" id="faculty" style="width: 200px;"> 
+  {% for faculty in faculties %}
+  <option value="{{faculty}}">{{faculty}}</option> 
+     {% endfor %}         
+  </select>  
+</td>
+</tr>
+ 
+<!------------------------  Name --------------------------------------->
+<tr>
+<td>Name Of Batch</td>
+<td><input type="text" name="name" maxlength="50" placeholder="Name" style="width: 200px;"/>
+
+</td>
+</tr>
+ 
+
+<!-------------------------- Student limit ------------------------------------->
+<tr>
+<td>Student Limit</td>
+<td>
+<input type="text" name="limit" maxlength="10" placeholder="Max 30 Allowed" style="width: 200px;"/>
+</td>
+</tr>
+
+
+ 
+ 
+
+<!--------------------------Starting Time----------------------------------->
+<tr>
+<td>Starting Time</td>
+<td>
+<input type="time" id="appt" name="start"
+       min="09:00" max="18:00" required>
+</td>
+</tr>
+<!--------------------------Ending Time----------------------------------->
+<tr>
+<td>Ending Time</td>
+<td>
+<input type="time" id="appt" name="end"
+       min="09:00" max="18:00" required>
+</td>
+</tr>
+<!-------------------------- Students Enrolled ------------------------------------->
+
+<tr>
+<td>Students Enrolled</td>
+<td>
+<input type="text" name="enrolled" maxlength="10" placeholder="Enrolled" style="width: 200px;"/>
+</td>
+</tr>
+
+<!---------------active--->
+ <tr>
+<td>Active</td>
+<td>
+<input type="radio" name="active" value="on" />
+On <br>
+<input type="radio" name="active" value="OFF" />
+Off
+</td>
+</tr>
+<!----------------------- Submit and Reset ------------------------------->
+<tr>
+<td colspan="2" align="center">
+<input type="Submit" value="Submit">
+<input type="reset" value="Reset">
+<a href="{% url 'index' %}"><button> SKIP</button> </center></a>
+</td>
+</tr>
+
+
+</form>
+</table>
+ 
+</body>
+</html>

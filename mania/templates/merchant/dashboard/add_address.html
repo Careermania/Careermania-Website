@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>Add Address</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+
+</head>
+ 
+<body>
+<h2>Add Address</h3>
+
+ 
+<table align="center" cellpadding = "10">
+  <form action="{% url 'add_address' user=merchant.username %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+ 
+ 
+<!------------------------- Address ---------------------------------->
+
+
+<tr>
+  <td>Branch</td>
+  <td><select name=branch id="branch">
+    {% for branch in branches %}
+    <option for="branch" value="{{branch}}">{{branch}}</option>
+    {% endfor %}
+
+ <tr>
+<td>Line</td>
+<td><input type="text" name="line" maxlength="50" placeholder="Line" style="width: 200px;"/>
+
+</td>
+</tr>
+<!-------------------------- City ------------------------------------->
+<tr>
+<td>Apartment</td>
+<td><input type="text" name="apartment" maxlength="50" placeholder="Apartment" style="width: 200px;"/>
+
+</td>
+</tr>
+ 
+<tr>
+<td>Bulding</td>
+<td><input type="text" name="building" maxlength="50" placeholder="Building" style="width: 200px;"/>
+
+</td>
+</tr>
+
+<tr>
+  <td>Landmark</td>
+  <td><input type="text" name="landmark" maxlength="50" placeholder="Landmark" style="width: 200px;"/>
+  
+  </td>
+  </tr>
+
+<tr>
+<td>City</td>
+<td><input type="text" name="city" maxlength="50" placeholder="City" style="width: 200px;"/>
+
+</td>
+</tr>
+
+<tr>
+  <td>District</td>
+  <td><input type="text" name="district" maxlength="50" placeholder="District" style="width: 200px;"/>
+  
+  </td>
+  </tr>
+<!----- -------------------- Pin Code-------------------------------------->
+<tr>
+<td>Pin Code</td>
+<td><input type="Number" name="pin" maxlength="6" placeholder="Pincode" style="width: 200px;"/>
+
+</td>
+</tr>
+ 
+<!---------------------------- State ----------------------------------->
+<tr>
+<td>State</td>
+<td><input type="text" name="state" maxlength="50" placeholder="State" style="width: 200px;"/>
+
+</td>
+</tr>
+ 
+
+<!----------------------- Submit and Reset ------------------------------->
+<tr>
+<td colspan="2" align="center">
+<input type="submit" value="Submit">
+<input type="reset" value="Reset">
+</form>
+<a href="{% url 'index' %}"><button> SKIP</button> </center></a>
+
+</td>
+</tr>
+</table>
+ 
+
+ 
+</body>
+</html>

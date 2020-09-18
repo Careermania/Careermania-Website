@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>Add Faculty</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+
+</head>
+<body>
+<center><h2>Add Faculty</h3>
+</center>
+<table align="center" cellpadding = "10">
+  <form action="{% url 'add_faculty' user=merchant.username %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+ 
+<!------------------------ Name --------------------------------------->
+<tr>
+<td>Name</td>
+<td><input type="text" name="name" maxlength="50" placeholder="Name" style="width: 200px;"/>
+
+</td>
+</tr>
+
+<tr>
+    <td>Age</td>
+    <td><input type="text" name="age" maxlength="50" placeholder="Age" style="width: 200px;"/>
+    
+    </td>
+    </tr>
+
+<tr>
+ <td>Specialization</td>
+  <td><input type="text" name="specialization" maxlength="50" placeholder="Specialization" style="width: 200px;"/>
+</td>
+</tr>
+ 
+<!-------------------------- Email ID ------------------------------------->
+<tr>
+  <td>Description<br /><br /><br /></td>
+  <td><textarea name="description" rows="5" cols="23"></textarea></td>
+  </tr>
+ 
+
+
+<!----------------syllabus----------------->
+ <tr>
+<td>Picture</td>
+<td>
+<input type="file" id="myFile" name="pic">
+</td>
+</tr>
+
+<!----------------------- Submit and Reset ------------------------------->
+<tr>
+<td colspan="2" align="center">
+<input type="Submit" value="Submit">
+<input type="reset" value="Reset">
+</form>
+<a href="{% url 'index' %}"><button> SKIP</button> </center></a>
+</td>
+</tr>
+
+
+
+</table>
+ 
+</body>
+</html>
