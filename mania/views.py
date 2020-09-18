@@ -110,8 +110,7 @@ def forms_details(request, user):
     return render(request, 'merchant/login_merchant.html')
 
 @login_required(login_url='index')
-def merchant_dashboard(request, user):
-    user = User.objects.get(username=user)
+def merchant_dashboard(request):
     if request.user.is_merchant:
         try:
             coaching = Coaching.objects.get(merchant=request.user)
