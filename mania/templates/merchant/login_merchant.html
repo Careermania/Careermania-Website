@@ -1,71 +1,73 @@
 <!doctype html>
 <html lang="en">
   <head>
-      {% load static %}{% load socialaccount %}
+	  {% load static %}{% load socialaccount %}
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-
-      <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
-    <title>Merchant Login</title>
-      
-      <link rel="stylesheet" href="{% static 'css/login_merchant.css' %}">
-   </head>
-  <body>
-    <div class="container" style="margin: 100px auto;">
-    
-        <div class="row">
-        
-            <div class="col-lg-6 login-form">
-                <div class="form sign-in container">
-                      <h2>Merchant Sign In</h2>
-                      <form action="login_merchant" method="POST">{% csrf_token %}
-                      <label>
-                        <span>Email Address</span>
-                        <input type="email" name="email">
-                      </label>
-                      <label>
-                        <span>Password</span>
-                        <input type="password" name="password">
-                      </label>
-                      <br>
-                      <div style="color: red;"><center>{{error}}</center></div>
-                      <center><button type="submit">Sign In</button></center>
-                      <a href="reset_password"><p class="forgot-pass">Forgot Password ?</p></a>
-
-                      <div class="social-media">
-                        <ul>
-                          <li><a href="{% provider_login_url 'facebook'  %}" ><img src="{% static 'img/facebook.png' %}"></li></a>
-                          <li><a href="{% provider_login_url 'google' %}"><img src="{% static 'img/google.png' %}"></li></a>
-                        </ul>
-                      </div>
-                      </form>
-                    </div>
-            </div>
-            
-            <div class="col-lg-6" style="background-color: white;padding: 0;">
-                
-                <div class="bg-img">
-                    <div class="img-text m-up">
-                      <h2>New here?</h2>
-                      <p>Sign up and discover great amount of new opportunities!</p>
-                      <center><a href="register_merchant"><button>
-                        Sign Up
-                      </button></a></center>
-                    </div>
-
-                    
-
-            </div>
-        </div>
-    </div>
-
-    <!-- Optional JavaScript -->
-    <!-- Popper.js first, then Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Jockey+One&display=swap" rel="stylesheet">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	  <link rel="stylesheet" href="{% static 'css/signup_merchant.css' %}">	
+	 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+      <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <title>Login page</title>
+  </head>
+  <body style="background-color:  #234262;">
+  
+<div class="container" style="background-color: white;margin-top: 100px;margin-bottom:100px;">
+  <br>
+	 <div class="row">
+	 <div class="col-lg-12"> 
+	 <center><h2 style="padding: 30px;">Login as a Merchant</h2></center>
+	 </div>
+	 </div>
+     <div class="row">
+	 <div class="col-lg-6" style="padding: 80px;border-right:3px solid black;">
+	 <br>
+	 <form class="form" action="login_merchant" method="POST">{% csrf_token %}
+	  <div class="input-icons">
+	 <input type="text" class="text-line " placeholder="Email" name="email" required>
+	  <i class="fa fa-envelope-square" aria-hidden="true"></i>
+	  </div>
+	 <div class="input-icons">
+	   <input type="password"  class="text-line " placeholder="Password" id ="myInput" name="password" required>
+	   <i class="fa fa-eye" aria-hidden="true" onclick="merchant()" style="cursor: pointer;"></i>
+	   <br>
+	   </div>
+		<div style="color:red">{{error}}</div>
+		<div style="color:green">{{success}}</div>
+		<br>
+	  <button type="submit">Login</button> 
+	 </form>
+	 
+	 </div>
+	 <div class="col-lg-6" style="padding: 80px;">
+	     <center>
+	   <h4>  Also you can Login with </h4>
+	   <div style="">
+        <ul style="list-style-type: none;">
+        <li style="display: inline-block;padding: 10px;"><a href="{% provider_login_url 'facebook'  %}" ><img src="{% static 'img/facebook.png' %}" width="40" height="40"></li></a>
+        <li style="display: inline-block;padding: 10px;"><a href="{% provider_login_url 'google' %}"><img src="{% static 'img/google.png' %}" width="40" height="40"></li> </a>
+		</ul>
+		<center>
+			<h4 style="padding-top: 20px;">Not registered ?</h4><br>
+			<a href="register_merchant"><button class="btn btn-warning">Signup</button></a></center>
+      </div>
+       <center>
+	 
+	 </div>
+	 </div>
+	 <br><br>
+	 
+	 
+	
+  </div>
   </body>
-</html>

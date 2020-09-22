@@ -146,37 +146,41 @@ def merchant_dashboard(request):
             geolocation = None
         context = {'merchant': request.user, 'coaching': coaching, 'branch': branch, 'address': address, 'course': course, 
         'faculty': faculty, 'batch': batch, 'info': info, 'geolocation': geolocation}
-        return render(request, 'merchant/dashboard/dashboard.html', context=context)
+        return render(request, 'merchant/new_dashboard/merchant_dashboard.html', context=context)
     return render(request, 'merchant/login_merchant.html')
 
 
 @login_required
 def merchant_messages(request):
-    return render(request, 'merchant/dashboard/message-task.html')
+    return render(request, 'merchant/new_dashboard/chat.html')
 
 @login_required
-def merchant_components(request):
-    return render(request, 'merchant/dashboard/component.html')
+def merchant_table(request):
+    return render(request, 'merchant/new_dashboard/export-table.html')
     
 @login_required
-def merchant_error(request):
-    return render(request, 'merchant/dashboard/error.html')
+def merchant_contact(request):
+    return render(request, 'merchant/new_dashboard/contact.html')
 
 @login_required
 def merchant_forms(request):
-    return render(request, 'merchant/dashboard/form-advance.html')
+    return render(request, 'merchant/new_dashboard/basic-form.html')
+
+@login_required
+def merchant_forms2(request):
+    return render(request, 'merchant/new_dashboard/basic-form2.html')
 
 @login_required
 def merchant_gallery(request):
-    return render(request, 'merchant/dashboard/gallery.html')
+    return render(request, 'merchant/new_dashboard/gallery1.html')
 
 @login_required
 def merchant_invoice(request):
-    return render(request, 'merchant/dashboard/invoice.html')
+    return render(request, 'merchant/new_dashboard/invoice.html')
 
 @login_required
-def merchant_products(request):
-    return render(request, 'merchant/dashboard/product.html')
+def merchant_courses(request):
+    return render(request, 'merchant/new_dashboard/light-gallery.html')
 
 @login_required
 def logout_user(request):

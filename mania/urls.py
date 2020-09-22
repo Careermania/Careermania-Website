@@ -13,12 +13,13 @@ urlpatterns = [
     path('logout', views.logout_user, name='logout'),
 
     path('messages', views.merchant_messages, name="merchant_messages"),
-    path('components', views.merchant_components, name="merchant_components"),
-    path('error', views.merchant_error, name="merchant_error"),
+    path('table', views.merchant_table, name="merchant_table"),
+    path('contact', views.merchant_contact, name="merchant_contact"),
     path('forms', views.merchant_forms, name="merchant_forms"),
+    path('forms2', views.merchant_forms2, name="merchant_forms2"),
     path('gallery', views.merchant_gallery, name="merchant_gallery"),
     path('invoice', views.merchant_invoice, name="merchant_invoice"),
-    path('products', views.merchant_products, name="merchant_products"),
+    path('courses', views.merchant_courses, name="merchant_courses"),
     
 
     path('reset_password', auth_views.PasswordResetView.as_view(), name='reset_password'),
