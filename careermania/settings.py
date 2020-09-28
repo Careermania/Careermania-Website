@@ -85,8 +85,8 @@ AUTHENTICATION_BACKENDS = (
  'allauth.account.auth_backends.AuthenticationBackend',
  'social_core.backends.facebook.FacebookOAuth2',
  )
-SITE_ID = 4 #3 for local and 4 for heroku
-LOGIN_REDIRECT_URL='/index'
+SITE_ID = 4 #5 for local and 4 for heroku
+LOGIN_REDIRECT_URL='/merchant'
 
 
 SOCIALACCOUNT_PROVIDERS = {

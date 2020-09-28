@@ -12,4 +12,5 @@ admin.site.register(CoachingFacultyMember)
 admin.site.register(Geolocation)
 admin.site.register(BankAccountDetails)
 admin.site.register(Merchant_Details)
+admin.site.register(Message)
 

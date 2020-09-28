@@ -2,17 +2,16 @@
 <html lang="en">
 
 
-<!-- checkbox-and-radio.html  21 Nov 2019 03:51:00 GMT -->
+<!-- index.html  21 Nov 2019 03:44:50 GMT -->
 <head>
   {% load static %}
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Otika - Admin Dashboard Template</title>
+  <title>Merchant Dashboard</title>
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{% static 'assets/css/app.min.css' %}">
   <!-- Template CSS -->
   <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/bundles/pretty-checkbox/pretty-checkbox.min.css' %}">
   <link rel="stylesheet" href="{% static 'assets/css/components.css' %}">
   <!-- Custom style CSS -->
   <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
@@ -110,117 +109,103 @@
 
                   </aside>
       </div>
-      <!-- Main Content -->
-        <section class="section">
-          <div class="container mt-5">
-            <div class="row">
-              <div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
-                <div class="login-brand">
-                 
-                </div>
-                <div class="card card-primary">
-                  <div class="row m-0">
-                    <div class="col-12 col-md-12 col-lg-12 p-0">
-                      <div class="card-header text-center">
-                        <h4>Bank Account Details</h4>
-                      </div>
-                      <div class="card-body">
-                        <form method="POST" action="payment" enctype="multipart/form-data"> {% csrf_token %}
-                          <div class="form-group floating-addon">
-                            <label>Account Holder Name</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  
-                                </div>
-                              </div>
-                              <input id="name" type="text" class="form-control" name="name" placeholder="Name" value="{{account.account_holder}}" required>
-                            </div>
-                          </div>
-                          <div class="form-group floating-addon">
-                            <label>Bank Name</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  
-                                </div>
-                              </div>
-                              <input id="Description" type="text" class="form-control" name="bank_name" placeholder="Bank Name" value="{{account.bank_name}}" required>
-                            </div>
-                          </div>
-                          <div class="form-group floating-addon">
-                            <label>Account Number</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  
-                                </div>
-                              </div>
-                              <input id="Description" type="text" class="form-control" name="number" placeholder="Account Number" value="{{account.account_no}}" required>
-                            </div>
-                          </div>
-                          <div class="form-group floating-addon">
-                            <label>IFSC Code</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  
-                                </div>
-                              </div>
-                              <input id="Description" type="text" class="form-control" name="ifsc" placeholder="IFSC Code" value="{{account.ifsc_code}}" required>
-                            </div>
-                          </div>
-                          <div class="form-group floating-addon">
-                            <label>Mobile Number</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                  
-                                </div>
-                              </div>
-                              <input id="Description" type="text" class="form-control" name="mobile" placeholder="Mobile Number" value="{{account.mobile_no}}" required>
-                            </div>
-                          </div>
-                          <div class="form-group floating-addon">
-                            <label>Adhar Card</label>
-                            {% if account %}
-                            <a href="http://127.0.0.1:8000{{account.adhar_card.url}}">Click Here</a>
-                              <input id="Description" type="file" class="form-control" name="adhar">
-                              {% else %}
-                              <input id="Description" type="file" class="form-control" name="adhar" required>
-                              {% endif %}
-                            </div>
-                          <div class="form-group floating-addon">
-                            <label>Pan Card</label>
-                            {% if account %}
-                            <a href="http://127.0.0.1:8000{{account.pan_card.url}}">Click Here</a>
-                              <input id="Description" type="file" class="form-control" name="pan">
-                              {% else %}
-                              <input id="Description" type="file" class="form-control" name="pan" required>
-                              {% endif %}
-                            </div>
-                          <center>
-                            <button type="submit" class="btn btn-round btn-lg btn-primary">
-                              Submit
-                            </button></center>
-                        </form>
-                      </div>
-                    </div>
+    <section class="section">
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
+            <div class="login-brand">
+             
+            </div>
+            <div class="card card-primary">
+              <div class="row m-0">
+                <div class="col-12 col-md-12 col-lg-12 p-0">
+                  <div class="card-header text-center">
+                    <h4>Review Details</h4>
                   </div>
-                      
+                  <div class="card-body">
+                    <form method="POST">
+                      <div class="form-group floating-addon">
+                        <label>Review</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i class="far fa-user"></i>
+                            </div>
+                          </div>
+                          <input id="review" type="text" class="form-control" name="review" autofocus placeholder="Review">
+                        </div>
+                      </div>
+                      <div class="form-group floating-addon">
+                        <label>Rating</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i class="fas fa-envelope"></i>
+                            </div>
+                          </div>
+                          <input id="rating" type="text" class="form-control" name="rating" placeholder="Rating">
+                        </div>
+                      </div>
+                        <div class="form-group floating-addon">
+                        <label>Coaching</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i class="far fa-user"></i>
+                            </div>
+                          </div>
+                          <input id="text" type="text" class="form-control" name="coaching" placeholder="Coaching">
+                        </div>
+                      </div>
+                      <div class="form-group floating-addon">
+                        <label>User</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i class="far fa-user"></i>
+                            </div>
+                          </div>
+                          <input id="text" type="text" class="form-control" name="user" placeholder="User">
+                        </div>
+                      </div>
+                      <div class="form-group floating-addon">
+                        <label>Batch</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i class="far fa-user"></i>
+                            </div>
+                          </div>
+                          <input id="text" type="text" class="form-control" name="review_time" placeholder="Review Time">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
                 </div>
-                    
                 
+                    </form>  
               </div>
                   
             </div>
+                <div class="form-group text-center">
+                        <button type="submit" class="btn btn-round btn-lg btn-primary">
+                          Submit
+                        </button>
+                      </div>
+            
           </div>
-        </section>
-        </div></div>
+              
+        </div>
+      </div>
+    </section>
+  </div>
   <!-- General JS Scripts -->
   <script src="{% static 'assets/js/app.min.js' %}"></script>
   <!-- JS Libraies -->
+  <script src="http://maps.google.com/maps/api/js?key=AIzaSyB55Np3_WsZwUQ9NS7DP-HnneleZLYZDNw&amp;sensor=true"></script>
+  <script src="{% static 'assets/bundles/gmaps.js' %}"></script>
   <!-- Page Specific JS File -->
+  <script src="{% static 'assets/js/page/contact.js' %}"></script>
   <!-- Template JS File -->
   <script src="{% static 'assets/js/scripts.js' %}"></script>
   <!-- Custom JS File -->
@@ -228,5 +213,5 @@
 </body>
 
 
-<!-- checkbox-and-radio.html  21 Nov 2019 03:51:01 GMT -->
+<!-- contact.html  21 Nov 2019 04:05:05 GMT -->
 </html>

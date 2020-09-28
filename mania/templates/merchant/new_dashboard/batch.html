@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- index.html  21 Nov 2019 03:44:50 GMT -->
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Merchant Dashboard</title>
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="{% static 'assets/css/app.min.css' %}">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/components.css' %}">
+  <!-- Custom style CSS -->
+  <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+  <link rel='shortcut icon' type='image/x-icon' href="{% static 'assets/img/favicon.ico' %}" />
+</head>
+
+<body>
+  <div class="loader"></div>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      <nav class="navbar navbar-expand-lg main-navbar sticky">
+        <div class="form-inline mr-auto">
+          <ul class="navbar-nav mr-3">
+            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg
+									collapse-btn"> <i data-feather="align-justify"></i></a></li>
+            <li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
+                <i data-feather="maximize"></i>
+              </a></li>
+            <li>
+              <form class="form-inline mr-auto">
+                <div class="search-element">
+                  <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="200">
+                  <button class="btn" type="submit">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </form>
+            </li>
+          </ul>
+        </div>
+        <ul class="navbar-nav navbar-right">
+          <li style="padding-top: 6px;"><a href="{% url 'merchant_messages' %}"><i data-feather="mail" style="color: black;"></i></a></li>
+          <li class="dropdown"><a href="#" data-toggle="dropdown"
+              class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{coaching.logo.url}}"
+                class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
+            <div class="dropdown-menu dropdown-menu-right pullDown">
+              <div class="dropdown-title">Hello {{merchant.username}}</div>
+              <a href="{% url 'merchant_profile' %}" class="dropdown-item has-icon"> <i class="far
+										fa-user"></i> Profile
+              </a>
+              <a href="{% url 'coaching' %}" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
+                Settings
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="logout" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="main-sidebar sidebar-style-2">
+        <aside id="sidebar-wrapper">
+          <div class="sidebar-brand">
+            <a href="{% url 'merchant' %}"> <img alt="image" src="{% static 'assets/img/logo.png' %}" class="header-logo" /> <span
+                class="logo-name">CareerManiaa</span>
+            </a>
+          </div>
+          <ul class="sidebar-menu">
+            <li class="menu-header">Main</li>
+            <li class="dropdown active">
+              <a href="{% url 'merchant' %}" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="command"></i><span>Courses </span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="{% url 'add_course' %}">Add Courses</a></li>
+                  <li><a class="nav-link" href="{% url 'merchant_courses' %}">All Courses </a></li>
+                         </ul>
+            </li>
+            <li class="dropdown">
+            <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="chevrons-down"></i><span>General settings</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="{% url 'merchant_profile' %}">Profile</a></li>
+                <li><a class="nav-link" href="{% url 'coaching' %}">Coaching</a></li>
+                <li><a class="nav-link" href="{% url 'add_branch' %}">Branch</a></li>
+                  <li><a class="nav-link" href="{% url 'add_faculty' %}">Faculty</a></li>
+                  <li><a class="nav-link" href="{% url 'add_batch' %}">Batch</a></li>
+                  <li><a class="nav-link" href="{% url 'owner' %}">Owner</a></li>
+                  <li><a class="nav-link" href="{% url 'payment' %}">Bank Details</a></li>
+                  <li><a class="nav-link" href="{% url 'add_offer' %}">Offers</a></li>
+                  <li><a class="nav-link" href="{% url 'add_discount' %}">Discounts</a></li>
+                     </ul>
+            </li>
+            <li class="menu-header">Support</li>
+              <li><a class="nav-link" href="{% url 'merchant_messages' %}"><i data-feather="mail"></i><span>Chat with us</span></a></li>
+
+
+            <li class="menu-header">...</li>
+            <li><a class="nav-link" href="{% url 'merchant_invoice' %}"><i data-feather="file"></i><span>Invoice</span></a></li>
+            <li><a class="nav-link" href="{% url 'merchant_table' %}"><i data-feather="file-text"></i><span>Reports</span></a></li>
+
+
+                  </aside>
+      </div>
+    <section class="section">
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
+            <div class="login-brand">
+             
+            </div>
+            <div class="card card-primary">
+              <div class="row m-0">
+                <div class="col-12 col-md-12 col-lg-12 p-0">
+                  <div class="card-header text-center">
+                    <h4>Add Batch</h4>
+                  </div>
+                  <div class="card-body">
+                    {% if not edit_batch %}
+                    <form method="POST" action="add_batch" enctype="multipart/form-data"> {% csrf_token %}
+                      {% else %}
+                    <form method="POST" action="{% url 'update_batch' id=edit_batch.id %}" enctype="multipart/form-data"> {% csrf_token %}
+                      {% endif %}
+                      <div class="form-group floating-addon">
+                        <label>Course</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              
+                            </div>
+                          </div>
+                          <select name="course" id="course" class="form-control">
+                            {% for course in courses %}
+                            {% if batch == edit_batch.course %}
+                        <option value="{{course}}" selected>{{course}}</option>
+                        {% else %}
+                        <option value="{{course}}">{{course}}</option>
+                        {% endif %}
+                        {% endfor %}
+                          </select>                        </div>
+                      </div>
+                      <div class="form-group floating-addon">
+                        <label>Faculty</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              
+                            </div>
+                          </div>
+                          <select name="faculty" id="course" class="form-control">
+                            {% for faculty in faculties %}
+                            {% if faculty == edit_batch.teacher %}
+                        <option value="{{faculty}}" selected>{{faculty}}</option>
+                        {% else %}
+                        <option value="{{faculty}}">{{faculty}}</option>
+                        {% endif %}
+                        {% endfor %}
+                          </select>                        </div>
+                      </div>
+                      <div class="form-group floating-addon">
+                        <label>Name Of Batch</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              
+                            </div>
+                          </div>
+                          <input id="Description" type="text" class="form-control" name="name" placeholder="Name" value="{{edit_batch.name}}">
+                        </div>
+                      </div>
+                      <div class="form-group floating-addon">
+                        <label>Start Time</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              
+                            </div>
+                          </div>
+                          <input id="Description" type="time" class="form-control" name="start" value="{{edit_batch.start_time}}">
+                        </div>
+                      </div>
+                      <div class="form-group floating-addon">
+                        <label>End Time</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              
+                            </div>
+                          </div>
+                          <input id="Description" type="time" class="form-control" name="end" value="{{edit_batch.end_time}}">
+                        </div>
+                      </div>
+                      <div class="form-group floating-addon">
+                        <label>Batch Limit</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              
+                            </div>
+                          </div>
+                          <input id="Description" type="text" class="form-control" name="limit" placeholder="Limit(Max 30 Allowed)" value="{{edit_batch.student_limit}}">
+                        </div>
+                      </div>
+                      <div class="form-group floating-addon">
+                        <label>Students Enrolled</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              
+                            </div>
+                          </div>
+                          <input id="Description" type="text" class="form-control" name="enrolled" placeholder="Enrolled" value="{{edit_batch.students_enrolled}}">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label>Active</label><br>
+                        {% if edit_batch.is_active %}
+                        <input type="radio" id="on" value="on" name="active" checked>
+                        <label for="on">On</label>
+                        <input type="radio" id="off" value="off" name="active">
+                        <label for="off">Off</label>
+                        {% else %}
+                        <input type="radio" id="on" value="on" name="active">
+                        <label for="on">On</label>
+                        <input type="radio" id="off" value="off" name="active" checked>
+                        <label for="off">Off</label>
+                        {% endif %}
+                        </div>
+                      <center>
+                        <button type="submit" class="btn btn-round btn-lg btn-primary">
+                          Submit
+                        </button></center>
+                    </form>
+                  </div>
+                </div>
+              </div>
+                  
+            </div>
+                
+            
+          </div>
+              
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
+          <div class="card">
+            <div class="card-header">
+              <h4>All Batches</h4>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-hover" id="tableExport" style="width:100%;">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Faculty</th>
+                      <th>Start Time</th>
+                      <th>End Time</th>
+                      <th>Limit</th>
+                      <th>Enrolled</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for batch in batches %}
+                    <tr>
+                      <td>{{batch.name}}</td>
+                      <td>{{batch.teacher}}</td>
+                      <td>{{batch.start_time}}</td>
+                      <td>{{batch.end_time}}</td>
+                      <td>{{batch.student_limit}}</td>
+                      <td>{{batch.students_enrolled}}</td>
+                      <td><a href="{% url 'update_batch' id=batch.id %}"><button class="btn btn-lg btn-success">Edit</button></a></td>
+                      <td><a href="{% url 'delete_batch' id=batch.id %}"><button class="btn btn-lg btn-danger">Delete</button></a></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                    </table>
+                    </div>
+                    </div></div></div>
+
+    </section>
+  </div>
+  <!-- General JS Scripts -->
+  <script src="{% static 'assets/js/app.min.js' %}"></script>
+  <!-- JS Libraies -->
+  <script src="http://maps.google.com/maps/api/js?key=AIzaSyB55Np3_WsZwUQ9NS7DP-HnneleZLYZDNw&amp;sensor=true"></script>
+  <script src="{% static 'assets/bundles/gmaps.js' %}"></script>
+  <!-- Page Specific JS File -->
+  <script src="{% static 'assets/js/page/contact.js' %}"></script>
+  <!-- Template JS File -->
+  <script src="{% static 'assets/js/scripts.js' %}"></script>
+  <!-- Custom JS File -->
+  <script src="{% static 'assets/js/custom.js' %}"></script>
+</body>
+
+
+<!-- contact.html  21 Nov 2019 04:05:05 GMT -->
+</html>

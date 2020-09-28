@@ -15,12 +15,13 @@ urlpatterns = [
     path('messages', views.merchant_messages, name="merchant_messages"),
     path('table', views.merchant_table, name="merchant_table"),
     path('contact', views.merchant_contact, name="merchant_contact"),
-    path('forms', views.merchant_forms, name="merchant_forms"),
     path('forms2', views.merchant_forms2, name="merchant_forms2"),
     path('gallery', views.merchant_gallery, name="merchant_gallery"),
     path('invoice', views.merchant_invoice, name="merchant_invoice"),
-    path('courses', views.merchant_courses, name="merchant_courses"),
     
+    path('courses', views.merchant_courses, name="merchant_courses"),
+    path('payment', views.merchant_payment, name="payment"),
+    path('profile', views.merchant_profile, name="merchant_profile"),
 
     path('reset_password', auth_views.PasswordResetView.as_view(), name='reset_password'),
     path('reset_password_sent', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
@@ -29,24 +30,36 @@ urlpatterns = [
     path('activate/<uidb64>/<token>', views.ActivateAccountView.as_view(), name="activate"),
 
     path('forms_details/<user>', views.forms_details, name='forms_details'),
-    path('add_coaching/<user>', views.add_coaching, name='add_coaching'),
-    path('add_coaching_metadata/<user>', views.add_coaching_metadata, name='add_coaching_metadata'),
-    path('add_branch/<user>', views.add_branch, name='add_branch'),
-    path('add_address/<user>' , views.add_address, name='add_address'),
-    path('add_course/<user>', views.add_course, name='add_course'),
-    path('add_batch/<user>', views.add_batch, name='add_batch'),
-    path('add_faculty/<user>', views.add_faculty, name='add_faculty'),
-    path('add_geolocation/<user>', views.add_geolocation, name='add_geolocation'),
-    path('merchant_filter', views.merchant_filter_coaching, name='merchant_filter'),
-    path('update_page', views.update_page, name='update_page'),
     
+    path('add_coaching/<user>', views.add_coaching, name='add_coaching'),
+    path('coaching', views.update_coaching, name='coaching'),
 
-    path('update_coaching', views.update_coaching, name='update_coaching'),
-    path('update_coaching_metadata', views.update_coaching_metadata, name='update_coaching_data'),
+    path('add_coaching_metadata/<user>', views.add_coaching_metadata, name='owner'),
+    path('owner', views.update_coaching_metadata, name='owner'),
+    
+    path('add_branch', views.add_branch, name='add_branch'),
     path('update_branch/<str:id>', views.update_branch, name='update_branch'),
-    path('update_address/<str:id>' , views.update_address, name='update_address'),
+    path('delete_branch/<str:id>', views.delete_branch, name='delete_branch'),
+
+    path('add_course', views.add_course, name='add_course'),
     path('update_course/<str:id>', views.update_course, name='update_course'),
-    path('update_batch/<str:id>', views.update_batch, name='update_batch'),
+    path('delete_course/<str:id>', views.delete_course, name='delete_course'),
+
+    path('add_faculty', views.add_faculty, name='add_faculty'),
     path('update_faculty/<str:id>', views.update_faculty, name='update_faculty'),
-    path('update_geolocation<str:id>', views.update_geolocation, name='update_geolocation'),
+    path('delete_faculty/<str:id>', views.delete_faculty, name='delete_faculty'),
+
+    path('add_batch', views.add_batch, name='add_batch'),
+    path('update_batch/<str:id>', views.update_batch, name='update_batch'),
+    path('delete_batch/<str:id>', views.delete_batch, name='delete_batch'),
+
+    path('add_offer', views.add_offer, name='add_offer'),
+    path('update_offer/<str:id>', views.update_offer, name='update_offer'),
+    path('delete_offer/<str:id>', views.delete_offer, name='delete_offer'),
+
+    path('add_discount', views.add_discount, name='add_discount'),
+    path('update_discount/<str:id>', views.update_discount, name='update_discount'),
+    path('delete_discount/<str:id>', views.delete_discount, name='delete_discount'),
+
+    path('merchant_filter', views.merchant_filter_coaching, name='merchant_filter'),
 ]

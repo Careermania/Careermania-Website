@@ -129,7 +129,7 @@ $("#chat-form").submit(function () {
   if (me.find('input').val().trim().length > 0) {
     $.chatCtrl('#mychatbox', {
       text: me.find('input').val(),
-      picture: 'assets/img/users/user-5.png',
+      picture: '.././img/users/user-5.png',
     });
     me.find('input').val('');
   }

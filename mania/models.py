@@ -159,7 +159,7 @@ class Address(models.Model):
     pincode = models.CharField(max_length=250,blank=False,null=False,default=None)
 
     def __str__(self):
-        return self.line1 + ", " + self.apartment + ", " +  self.building + ", " +  self.city
+        return  self.apartment + ", " +  self.building + ", "  + self.line1 + ", " + self.city 
 
     
 
@@ -186,6 +186,7 @@ class Course(models.Model):
     id = models.AutoField(primary_key=True)
     external_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     name = models.CharField(max_length=250,blank=False,null=False,verbose_name='branch_course_name')
+    coaching = models.ForeignKey(Coaching,on_delete=models.CASCADE)
     branch = models.ForeignKey(Branch,related_name='courses_of',on_delete=models.CASCADE)
     description = models.TextField(blank=True,null=True)
     start_date = models.DateField(editable=True)
@@ -222,8 +223,8 @@ class Batch(models.Model):
     name = models.CharField(max_length=250,blank=False,null=False,verbose_name='course_batch_name')
     course = models.ForeignKey(Course,related_name='batches_of',on_delete=models.CASCADE)
     teacher = models.ForeignKey(CoachingFacultyMember,related_name='teaches',on_delete=models.CASCADE,null=False,blank=False)
-    start_time = models.TimeField()
-    end_time = models.TimeField()
+    start_time = models.CharField(max_length=20, default=None)
+    end_time = models.CharField(max_length=20, default=None)
     student_limit = models.PositiveIntegerField(blank=True,null=True)
     students_enrolled = models.PositiveIntegerField(blank=True,null=True)
     is_active = models.BooleanField(default=False)
@@ -268,5 +269,59 @@ class BankAccountDetails(models.Model):
 
     def __str__(self):
         return self.coaching.name
+
+class Registration(models.Model):
+    id = models.AutoField(primary_key=True)
+    external_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    batch = models.ForeignKey(Batch, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
+
+class Offer(models.Model):
+    id = models.AutoField(primary_key=True)
+    external_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    name = models.CharField(max_length=100, default=None)
+    description = models.CharField(max_length=200, default=None)
+    coaching = models.ForeignKey(Coaching, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.name
+
+class Discount(models.Model):
+    id = models.AutoField(primary_key=True)
+    coaching = models.ForeignKey(Coaching, on_delete=models.CASCADE)
+    external_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    disc_code = models.CharField(max_length=20, default=None)
+    description = models.CharField(max_length=200, default=None)
+    disc_percent = models.IntegerField(default=None)
+    
+    def __str__(self):
+        return self.disc_code
+
+class Review(models.Model):
+    id = models.AutoField(primary_key=True)
+    external_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    review = models.CharField(max_length=200, default=None)
+    rating = models.IntegerField(default=None)
+    coaching = models.ForeignKey(Coaching, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    review_time = models.DateTimeField(auto_now=False)
+
+    def __str__(self):
+        return self.coaching.name + " - Review By : " + self.user.username
+
+class Message(models.Model):
+    id = models.AutoField(primary_key=True)
+    external_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    message = models.CharField(max_length=200, default=None)
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="msg_sender")
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name="msg_receiver")
+    timestamp = models.DateTimeField(auto_now=False)
+
+    def __str__(self):
+        return str(self.sender) + " - Message : " + self.message
+
 
 
